@@ -348,16 +348,90 @@ def test_dashboard_stats():
 
 ---
 
-## 📈 Métriques
+### Phase 5 : Rules Management ✅
 
-- **Total tâches** : 245 (estimation)
-- **Tâches terminées** : 9
-- **Tâches en cours** : 0
-- **Tâches restantes** : 236
-- **Progression** : ~4%
+**Statut** : ✅ Terminée  
+**Date complétion** : 2025-11-03T19:11:43+00:00
+
+#### Étape 5.1 : API Rules ✅
+
+**Statut** : ✅ Terminée
+
+##### 5.1.1 : Endpoints CRUD ✅
+- ✅ GET `/api/rules` - Liste avec filtres et pagination
+- ✅ GET `/api/rules/<id>` - Récupérer une règle
+- ✅ POST `/api/rules` - Créer une règle
+- ✅ PUT `/api/rules/<id>` - Mettre à jour une règle
+- ✅ DELETE `/api/rules/<id>` - Supprimer une règle
+
+##### 5.1.2 : Filtres et Pagination ✅
+- ✅ Filtres : scene, section, year
+- ✅ Pagination (page, per_page, total, pages)
+- ✅ Protection JWT sur tous les endpoints
+
+**Critères de validation** :
+- ✅ Tous endpoints fonctionnent
+- ✅ Tests passent (6/6)
+- ✅ Couverture 100% sur rules.py
+- ✅ Modèle Rule mis à jour (to_dict inclut content)
+
+#### Étape 5.2 : Composant Rules ✅
+
+**Statut** : ✅ Terminée
+
+##### 5.2.1 : Page Rules ✅
+- ✅ Composant Rules avec filtres (scene, section, year)
+- ✅ Bouton réinitialiser filtres
+
+##### 5.2.2 : Composant RulesTable ✅
+- ✅ Tableau avec colonnes (ID, Nom, Scene, Section, Année, Actions)
+- ✅ États loading/error gérés
+- ✅ Pagination frontend intégrée
+- ✅ Actions Edit/Delete intégrées
+
+##### 5.2.3 : Modal Prévisualisation ✅
+- ✅ Modal pour afficher le contenu complet de la règle
+- ✅ Format monospace avec scroll
+- ✅ Bouton fermer
+
+##### 5.2.4 : Service API rules.ts ✅
+- ✅ Méthode list() avec paramètres
+- ✅ Méthode get() pour récupérer règle
+- ✅ Méthode create() pour créer règle
+- ✅ Méthode update() pour mettre à jour règle
+- ✅ Méthode delete() pour supprimer règle
+
+**Critères de validation** :
+- ✅ Composants fonctionnent
+- ✅ Filtres appliqués correctement
+- ✅ Pagination fonctionnelle
+- ✅ Frontend compile sans erreurs
+
+#### Étape 5.3 : Tests Phase 5 ✅
+
+**Statut** : ✅ Terminée
+
+- ✅ Tests API : list_rules, list_rules_with_filters, get_rule, create_rule, update_rule, delete_rule
+- ✅ Tous tests passent (6/6)
+- ✅ Couverture 100% sur blueprint rules
+
+**Critères de validation** :
+- ✅ Tests passent à 100%
+- ✅ Couverture ≥90% (100%)
+- ✅ Documentation à jour
 
 ---
 
-**Dernière mise à jour** : 2025-11-03T19:05:55+00:00  
+## 📈 Métriques
+
+- **Total tâches** : 245 (estimation)
+- **Tâches terminées** : 12
+- **Tâches en cours** : 0
+- **Tâches restantes** : 233
+- **Progression** : ~5%
+
+---
+
+**Dernière mise à jour** : 2025-11-03T19:11:43+00:00  
 **Prochaine mise à jour** : À chaque étape complétée
 

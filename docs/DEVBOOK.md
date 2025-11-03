@@ -569,15 +569,59 @@ Ce DEVBOOK centralise le suivi de toutes les phases et étapes du projet v2, ave
 
 ---
 
-### Phase 5 : Rules Management ⏳
+### Phase 5 : Rules Management ✅
 
-**Statut** : ⏳ Non commencée  
+**Statut** : ✅ Terminée  
 **Priorité MoSCoW** : Must Have  
 **Dépendances** : Phase 1  
-**Date début estimée** : 2026-01-24  
-**Date fin estimée** : 2026-02-14
+**Date début** : 2025-11-03T19:11:00+00:00  
+**Date fin** : 2025-11-03T19:11:43+00:00
 
 **Voir** : `docs/PRDs/PRD-004-Rules.md` pour détails.
+
+#### Résultats Phase 5
+
+**Tests** : ✅ 6/6 passent (tests/phase5/test_rules_api.py)  
+**Couverture** : ✅ 100% sur web/blueprints/rules.py  
+**Frontend** : ✅ Build réussi, composants RulesTable et Rules implémentés  
+**Linting** : ✅ 0 erreurs (black)
+
+#### Étapes Complétées
+
+##### Étape 5.1 : API Rules ✅
+- ✅ Endpoint GET `/api/rules` avec filtres (scene, section, year)
+- ✅ Endpoint GET `/api/rules/<id>` pour récupérer une règle
+- ✅ Endpoint POST `/api/rules` pour créer une règle
+- ✅ Endpoint PUT `/api/rules/<id>` pour mettre à jour une règle
+- ✅ Endpoint DELETE `/api/rules/<id>` pour supprimer une règle
+- ✅ Pagination (page, per_page, total, pages)
+- ✅ Protection JWT sur tous les endpoints
+
+##### Étape 5.2 : Composant Rules ✅
+- ✅ Page Rules avec filtres (scene, section, year)
+- ✅ Composant RulesTable avec affichage tableau
+- ✅ Modal de prévisualisation du contenu de la règle
+- ✅ Actions Edit/Delete intégrées
+- ✅ Pagination frontend intégrée
+- ✅ États loading/error gérés
+- ✅ Service API rules.ts créé
+
+##### Étape 5.3 : Tests Phase 5 ✅
+- ✅ Tests API : list_rules, list_rules_with_filters, get_rule, create_rule, update_rule, delete_rule
+- ✅ Tous tests passent (6/6)
+- ✅ Couverture 100% sur blueprint rules
+- ✅ Modèle Rule mis à jour (to_dict inclut content et updated_at)
+
+#### Validation DoD Phase 5
+
+- ✅ Code implémenté à 100%
+- ✅ Tests à 100% (6/6 passent)
+- ✅ Couverture ≥90% (100% sur rules.py)
+- ✅ Documentation à jour (DEVBOOK, todolist)
+- ✅ Linters passent (black)
+- ✅ Frontend compile sans erreurs
+
+**Note** : L'intégration complète avec scenerules.org (import/sync automatique) sera implémentée dans une phase ultérieure. La structure CRUD de base est complète et fonctionnelle.
 
 ---
 
