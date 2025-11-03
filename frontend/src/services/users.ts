@@ -32,6 +32,8 @@ export interface UpdateUserData {
   username?: string;
   email?: string;
   password?: string;
+  note?: string;
+  active?: boolean;
   role_ids?: number[];
 }
 
