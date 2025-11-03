@@ -46,9 +46,11 @@ def test_create_role(client) -> None:
     """Test creating role."""
     with client.application.app_context():
         db.create_all()
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="admin", email="admin@example.com")
         user.set_password("password123")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
     # Login
@@ -75,9 +77,11 @@ def test_update_role(client) -> None:
     """Test updating role."""
     with client.application.app_context():
         db.create_all()
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="admin", email="admin@example.com")
         user.set_password("password123")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
         role = Role(name="Editor", description="Editor role")
@@ -108,9 +112,11 @@ def test_delete_role(client) -> None:
     """Test deleting role."""
     with client.application.app_context():
         db.create_all()
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="admin", email="admin@example.com")
         user.set_password("password123")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
         role = Role(name="Editor", description="Editor role")

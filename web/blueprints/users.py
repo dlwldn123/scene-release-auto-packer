@@ -170,17 +170,17 @@ def update_user(user_id: int) -> tuple[dict, int]:
     if not user:
         return {"message": "User not found"}, 404
 
+    data = request.get_json()
+
+    if not data:
+        return {"message": "No data provided"}, 400
+
     # Check permissions (admin or self)
     if not can_manage_user(current_user, user_id):
         return {"message": "Permission denied"}, 403
     # Limited permissions for self (password only, not roles)
     if current_user.id == user_id and "role_ids" in data:
         return {"message": "Cannot change your own roles"}, 403
-
-    data = request.get_json()
-
-    if not data:
-        return {"message": "No data provided"}, 400
 
     # Update fields if provided
     if "username" in data:

@@ -54,9 +54,11 @@ def test_get_role_not_found(client, app):
 def test_create_role_missing_name(client, app):
     """Test creating role with missing name."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="testuser", email="test@test.com")
         user.set_password("password")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
         login_response = client.post(
@@ -77,9 +79,11 @@ def test_create_role_missing_name(client, app):
 def test_create_role_no_data(client, app):
     """Test creating role with no data."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="testuser", email="test@test.com")
         user.set_password("password")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
         login_response = client.post(
@@ -99,9 +103,11 @@ def test_create_role_no_data(client, app):
 def test_create_role_duplicate_name(client, app):
     """Test creating role with duplicate name."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="testuser", email="test@test.com")
         user.set_password("password")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
         role = Role(name="ExistingRole")
@@ -127,14 +133,21 @@ def test_create_role_duplicate_name(client, app):
 def test_create_role_with_permissions(client, app):
     """Test creating role with permissions."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="testuser", email="test@test.com")
         user.set_password("password")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
-        perm1 = Permission(resource="releases", action="read")
-        perm2 = Permission(resource="releases", action="write")
-        db.session.add_all([perm1, perm2])
+        perm1 = Permission.query.filter_by(resource="releases", action="read").first()
+        if not perm1:
+            perm1 = Permission(resource="releases", action="read")
+            db.session.add(perm1)
+        perm2 = Permission.query.filter_by(resource="releases", action="write").first()
+        if not perm2:
+            perm2 = Permission(resource="releases", action="write")
+            db.session.add(perm2)
         db.session.commit()
 
         login_response = client.post(
@@ -160,9 +173,11 @@ def test_create_role_with_permissions(client, app):
 def test_update_role_not_found(client, app):
     """Test updating non-existent role."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="testuser", email="test@test.com")
         user.set_password("password")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
         login_response = client.post(
@@ -183,9 +198,11 @@ def test_update_role_not_found(client, app):
 def test_update_role_no_data(client, app):
     """Test updating role with no data."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="testuser", email="test@test.com")
         user.set_password("password")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
         role = Role(name="TestRole")
@@ -214,9 +231,11 @@ def test_update_role_no_data(client, app):
 def test_update_role_duplicate_name(client, app):
     """Test updating role with duplicate name."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="testuser", email="test@test.com")
         user.set_password("password")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
         role1 = Role(name="Role1")
@@ -244,15 +263,23 @@ def test_update_role_duplicate_name(client, app):
 def test_update_role_with_permissions(client, app):
     """Test updating role with permissions."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="testuser", email="test@test.com")
         user.set_password("password")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
         role = Role(name="TestRole")
-        perm1 = Permission(resource="releases", action="read")
-        perm2 = Permission(resource="releases", action="write")
-        db.session.add_all([role, perm1, perm2])
+        perm1 = Permission.query.filter_by(resource="releases", action="read").first()
+        if not perm1:
+            perm1 = Permission(resource="releases", action="read")
+            db.session.add(perm1)
+        perm2 = Permission.query.filter_by(resource="releases", action="write").first()
+        if not perm2:
+            perm2 = Permission(resource="releases", action="write")
+            db.session.add(perm2)
+        db.session.add(role)
         db.session.commit()
         role_id = role.id
 

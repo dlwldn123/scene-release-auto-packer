@@ -144,6 +144,12 @@ def update_role(role_id: int) -> tuple[dict, int]:
     Returns:
         JSON response with updated role.
     """
+    current_user_id = get_jwt_identity()
+    user = db.session.get(User, current_user_id)
+
+    if not user:
+        return {"message": "User not found"}, 404
+
     role = db.session.get(Role, role_id)
 
     if not role:
@@ -191,15 +197,19 @@ def delete_role(role_id: int) -> tuple[dict, int]:
     Returns:
         JSON response.
     """
+    current_user_id = get_jwt_identity()
+    user = db.session.get(User, current_user_id)
+
+    if not user:
+        return {"message": "User not found"}, 404
+
     role = db.session.get(Role, role_id)
 
     if not role:
         return {"message": "Role not found"}, 404
 
     # Check permissions (admin only)
-    current_user_id = get_jwt_identity()
-    current_user = db.session.get(User, current_user_id)
-    if not current_user or not check_permission(current_user, "roles", "delete"):
+    if not check_permission(user, "roles", "delete"):
         return {"message": "Permission denied"}, 403
 
     db.session.delete(role)

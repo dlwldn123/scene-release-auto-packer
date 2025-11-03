@@ -41,6 +41,14 @@ def app(tmp_path: Path) -> Iterator["Flask"]:
 
     with app.app_context():
         db.create_all()
+        
+        # Create default permissions for tests
+        from web.utils.permissions import create_default_permissions
+        try:
+            create_default_permissions()
+        except Exception:
+            pass  # Permissions may already exist
+        
         yield app
         db.session.remove()
         db.drop_all()

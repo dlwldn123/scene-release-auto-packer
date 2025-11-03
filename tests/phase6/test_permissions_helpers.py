@@ -59,12 +59,15 @@ def test_check_permission_admin_has_all(app):
 
 
 def test_check_permission_user_with_role_permission(app):
-    """Test check_permission returns strength for user with role permission."""
+    """Test check_permission returns True for user with role permission."""
     with app.app_context():
         editor_role = Role(name="editor", description="Editor")
-        permission = Permission(resource="releases", action="mod")
+        permission = Permission.query.filter_by(resource="releases", action="mod").first()
+        if not permission:
+            permission = Permission(resource="releases", action="mod")
+            db.session.add(permission)
         editor_role.permissions.append(permission)
-        db.session.add_all([editor_role, permission])
+        db.session.add(editor_role)
         db.session.commit()
 
         user = User(username="editor", email="editor@test.com")
@@ -172,10 +175,16 @@ def test_get_user_permissions_user_with_role(app):
     """Test get_user_permissions returns permissions from role."""
     with app.app_context():
         editor_role = Role(name="editor", description="Editor")
-        permission_read = Permission(resource="releases", action="read")
-        permission_mod = Permission(resource="releases", action="mod")
+        permission_read = Permission.query.filter_by(resource="releases", action="read").first()
+        if not permission_read:
+            permission_read = Permission(resource="releases", action="read")
+            db.session.add(permission_read)
+        permission_mod = Permission.query.filter_by(resource="releases", action="mod").first()
+        if not permission_mod:
+            permission_mod = Permission(resource="releases", action="mod")
+            db.session.add(permission_mod)
         editor_role.permissions.extend([permission_read, permission_mod])
-        db.session.add_all([editor_role, permission_read, permission_mod])
+        db.session.add(editor_role)
         db.session.commit()
 
         user = User(username="editor", email="editor@test.com")
@@ -213,9 +222,12 @@ def test_get_user_permissions_user_with_role_no_releases_permission(app):
     """Test get_user_permissions adds READ for releases if role has no releases permission."""
     with app.app_context():
         rules_role = Role(name="rules_only", description="Rules only")
-        permission_read_rules = Permission(resource="rules", action="read")
+        permission_read_rules = Permission.query.filter_by(resource="rules", action="read").first()
+        if not permission_read_rules:
+            permission_read_rules = Permission(resource="rules", action="read")
+            db.session.add(permission_read_rules)
         rules_role.permissions.append(permission_read_rules)
-        db.session.add_all([rules_role, permission_read_rules])
+        db.session.add(rules_role)
         db.session.commit()
 
         user = User(username="user", email="user@test.com")
@@ -342,6 +354,10 @@ def test_create_default_permissions_existing_permissions(app):
     from web.models import Permission
 
     with app.app_context():
+        # Delete all permissions first
+        Permission.query.delete()
+        db.session.commit()
+        
         # Create one permission manually
         existing_perm = Permission(resource="releases", action="read")
         db.session.add(existing_perm)

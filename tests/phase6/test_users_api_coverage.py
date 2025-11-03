@@ -9,11 +9,13 @@ from web.models import Role, User
 def test_list_users_with_username_filter(client, app):
     """Test listing users with username filter."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user1 = User(username="user1", email="user1@test.com")
         user1.set_password("password")
+        user1.roles.append(admin_role)
         user2 = User(username="user2", email="user2@test.com")
         user2.set_password("password")
-        db.session.add_all([user1, user2])
+        db.session.add_all([admin_role, user1, user2])
         db.session.commit()
 
         login_response = client.post(
@@ -32,11 +34,13 @@ def test_list_users_with_username_filter(client, app):
 def test_list_users_with_email_filter(client, app):
     """Test listing users with email filter."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user1 = User(username="user1", email="user1@test.com")
         user1.set_password("password")
+        user1.roles.append(admin_role)
         user2 = User(username="user2", email="user2@test.com")
         user2.set_password("password")
-        db.session.add_all([user1, user2])
+        db.session.add_all([admin_role, user1, user2])
         db.session.commit()
 
         login_response = client.post(
@@ -101,9 +105,11 @@ def test_get_user_not_found(client, app):
 def test_create_user_missing_fields(client, app):
     """Test creating user with missing required fields."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="admin", email="admin@test.com")
         user.set_password("password")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
         login_response = client.post(
@@ -141,9 +147,11 @@ def test_create_user_missing_fields(client, app):
 def test_create_user_no_data(client, app):
     """Test creating user with no data."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="admin", email="admin@test.com")
         user.set_password("password")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
         login_response = client.post(
@@ -163,9 +171,11 @@ def test_create_user_no_data(client, app):
 def test_create_user_duplicate_username(client, app):
     """Test creating user with duplicate username."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="admin", email="admin@test.com")
         user.set_password("password")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
 
         existing = User(username="existing", email="existing@test.com")
@@ -196,14 +206,13 @@ def test_create_user_duplicate_username(client, app):
 def test_create_user_duplicate_email(client, app):
     """Test creating user with duplicate email."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="admin", email="admin@test.com")
         user.set_password("password")
-        db.session.add(user)
-        db.session.commit()
-
+        user.roles.append(admin_role)
         existing = User(username="existing", email="existing@test.com")
         existing.set_password("password")
-        db.session.add(existing)
+        db.session.add_all([admin_role, user, existing])
         db.session.commit()
 
         login_response = client.post(
@@ -252,9 +261,11 @@ def test_update_user_not_found(client, app):
 def test_update_user_no_data(client, app):
     """Test updating user with no data."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user = User(username="admin", email="admin@test.com")
         user.set_password("password")
-        db.session.add(user)
+        user.roles.append(admin_role)
+        db.session.add_all([admin_role, user])
         db.session.commit()
         user_id = user.id
 
@@ -279,11 +290,13 @@ def test_update_user_no_data(client, app):
 def test_update_user_duplicate_username(client, app):
     """Test updating user with duplicate username."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user1 = User(username="user1", email="user1@test.com")
         user1.set_password("password")
+        user1.roles.append(admin_role)
         user2 = User(username="user2", email="user2@test.com")
         user2.set_password("password")
-        db.session.add_all([user1, user2])
+        db.session.add_all([admin_role, user1, user2])
         db.session.commit()
         user2_id = user2.id
 
@@ -306,11 +319,13 @@ def test_update_user_duplicate_username(client, app):
 def test_update_user_duplicate_email(client, app):
     """Test updating user with duplicate email."""
     with app.app_context():
+        admin_role = Role(name="admin", description="Administrator")
         user1 = User(username="user1", email="user1@test.com")
         user1.set_password("password")
+        user1.roles.append(admin_role)
         user2 = User(username="user2", email="user2@test.com")
         user2.set_password("password")
-        db.session.add_all([user1, user2])
+        db.session.add_all([admin_role, user1, user2])
         db.session.commit()
         user2_id = user2.id
 
@@ -333,13 +348,17 @@ def test_update_user_duplicate_email(client, app):
 def test_update_user_with_roles(client, app):
     """Test updating user with roles."""
     with app.app_context():
-        user = User(username="admin", email="admin@test.com")
-        user.set_password("password")
+        admin_role = Role(name="admin", description="Administrator")
+        admin_user = User(username="admin", email="admin@test.com")
+        admin_user.set_password("password")
+        admin_user.roles.append(admin_role)
+        target_user = User(username="target", email="target@test.com")
+        target_user.set_password("password")
         role1 = Role(name="Role1")
         role2 = Role(name="Role2")
-        db.session.add_all([user, role1, role2])
+        db.session.add_all([admin_role, admin_user, target_user, role1, role2])
         db.session.commit()
-        user_id = user.id
+        target_user_id = target_user.id
 
         login_response = client.post(
             "/api/auth/login",
@@ -349,7 +368,7 @@ def test_update_user_with_roles(client, app):
         headers = {"Authorization": f"Bearer {token}"}
 
         response = client.put(
-            f"/api/users/{user_id}",
+            f"/api/users/{target_user_id}",
             json={"role_ids": [role1.id, role2.id]},
             headers=headers,
         )

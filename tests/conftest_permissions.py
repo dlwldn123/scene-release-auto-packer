@@ -58,7 +58,7 @@ def create_user_with_permissions(app):
 
             for resource, action in permissions:
                 permission = Permission.query.filter_by(
-                    resource => resource, action=action
+                    resource=resource, action=action
                 ).first()
                 if not permission:
                     permission = Permission(resource=resource, action=action)
@@ -72,3 +72,21 @@ def create_user_with_permissions(app):
         return user
 
     return _create_user
+
+
+def get_or_create_permission(resource: str, action: str) -> Permission:
+    """Get existing permission or create if not exists.
+    
+    Args:
+        resource: Resource name.
+        action: Action name.
+        
+    Returns:
+        Permission object.
+    """
+    permission = Permission.query.filter_by(resource=resource, action=action).first()
+    if not permission:
+        permission = Permission(resource=resource, action=action)
+        db.session.add(permission)
+        db.session.commit()
+    return permission
