@@ -13,7 +13,7 @@
     "dev": "vite --config frontend/vite.config.mjs",
     "build": "cd frontend && tsc --noEmit && cd .. && vite build --config frontend/vite.config.mjs",
     "preview": "vite preview --config frontend/vite.config.mjs",
-    "test:frontend": "cd frontend && vitest run"
+    "test:frontend": "cd frontend && vitest run --config vitest.config.ts"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",

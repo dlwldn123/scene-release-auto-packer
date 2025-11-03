@@ -90,34 +90,43 @@ Cette todoList découpe le projet en **phases**, **étapes** et **sous-étapes**
 - ✅ Tests ORM complets (`tests/phase1/test_models.py` - 6 tests passent)
 - ✅ Couverture cumulée : 92% (21/21 tests passent)
 
-## Phase 2 : Interface Administration (3 semaines)
+## Phase 2 : Interface Administration (3 semaines) ✅
 
-### Étape 2.1 : Dashboard
+**Statut** : ✅ **TERMINÉE À 100% DoD** (2025-11-03T17:59:04+00:00)
 
-**Statut** : ⏳ Non commencée  
-**Priorité** : Must Have  
-**Estimation** : 3 jours  
-**Dépendances** : Phase 1
+### Étape 2.1 : Dashboard ✅
+- ✅ React 19 + TypeScript configuré (Vite)
+- ✅ Structure `frontend/src/` créée (components, pages, contexts, services)
+- ✅ Composant Dashboard avec stats (total releases, jobs, user stats)
+- ✅ API endpoint `/api/dashboard/stats` créé et sécurisé (JWT)
+- ✅ Tests API : `tests/phase2/test_dashboard_api.py` (2 tests passent)
+- ✅ Tests frontend : `frontend/src/components/__tests__/Dashboard.test.tsx`
 
-#### Sous-étapes
+### Étape 2.2 : Navigation ✅
+- ✅ Composant Navbar créé avec liens (Dashboard, Nouvelle Release, Liste, Rules, Users, Roles, Config)
+- ✅ React Router v7 configuré dans `App.tsx`
+- ✅ Navigation fonctionnelle avec état actif
+- ✅ Tests frontend : `frontend/src/components/__tests__/Navbar.test.tsx`
 
-##### 2.1.1 : Setup React
-- ⏳ Installer React + dependencies
-- ⏳ Créer structure src/
-- ⏳ Configurer webpack/vite
-- ⏳ Configurer routing (React Router)
+### Étape 2.3 : Structure Pages ✅
+- ✅ PageLayout créé (titre + description + content)
+- ✅ Pages placeholders créées :
+  - Dashboard (fonctionnel avec stats)
+  - ReleasesList, NewRelease, Rules, Users, Roles, Config (placeholders)
+- ✅ Layout cohérent sur toutes pages
 
-##### 2.1.2 : Composant Dashboard
-- ⏳ Créer Dashboard component
-- ⏳ Afficher informations utilisateur connecté
-- ⏳ Afficher statistiques basiques
-- ⏳ Styling Bootstrap
+### Étape 2.4 : Thème Jour/Nuit ✅
+- ✅ ThemeContext créé avec persistance localStorage
+- ✅ ThemeToggle composant créé (bouton avec icônes ☀️/🌙)
+- ✅ Styles dark mode avec variables CSS (`[data-theme="dark"]`)
+- ✅ Transition fluide entre thèmes
+- ✅ Tests frontend : `frontend/src/contexts/__tests__/ThemeContext.test.tsx`
 
-##### 2.1.3 : API Dashboard
-- ⏳ Créer endpoint GET /api/dashboard/stats
-- ⏳ Retourner stats (releases count, etc.)
-- ⏳ Sécuriser endpoint (JWT)
-- ⏳ Tests endpoint
+**Critères de validation consolidés** :
+- ✅ Tests API : 2/2 passent (87% couverture)
+- ✅ Build frontend : Compile sans erreurs
+- ✅ Documentation à jour (DEVBOOK, TodoList)
+- ✅ **Definition of Done** : Tous critères satisfaits à 100%
 
 **Tests TDD** :
 ```python
