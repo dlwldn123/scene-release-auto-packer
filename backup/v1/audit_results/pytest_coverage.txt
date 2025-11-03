@@ -1,0 +1,5 @@
+ERROR: usage: pytest [options] [file_or_dir] [file_or_dir] [...]
+pytest: error: unrecognized arguments: --cov=src --cov=web --cov-report=term --cov-report=json
+  inifile: None
+  rootdir: /home/deffice/projects/ebook.scene.packer
+

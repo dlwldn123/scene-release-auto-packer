@@ -1,0 +1,21 @@
+# Development tools for ebook.scene.packer
+# Install with: pip install -r requirements-dev.txt
+
+# Code formatting
+black>=23.0.0
+isort>=5.12.0
+
+# Linting
+flake8>=6.0.0
+
+# Type checking
+mypy>=1.0.0
+
+# Testing (already in requirements.txt, but listed here for completeness)
+pytest>=7.4.0
+pytest-cov>=4.1.0
+pytest-mock>=3.11.0
+
+# Additional development tools
+vulture>=2.9  # Dead code detection
+bandit>=1.7.0  # Security linting

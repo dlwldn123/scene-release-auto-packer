@@ -1,0 +1,64 @@
+api:
+  enable_googlebooks: true
+  enable_opds: false
+  enable_openlibrary: true
+  rate_limit_delay: 0.5
+  timeout: 10
+
+diz:
+  filename: FILE_ID.DIZ
+  max_lines: 30
+  max_width: 44
+
+nfo:
+  ascii_art: true
+  max_width: 80
+  template_path: templates/nfo_template.txt
+
+rar:
+  create_for_zip: true
+  method: 5
+
+sample:
+  azw:
+    amount: 1
+    type: chapter
+  cbz:
+    amount: 5
+    type: pages
+  epub:
+    amount: 1
+    type: chapter
+  mobi:
+    amount: 1
+    type: chapter
+  pdf:
+    amount: 3
+    type: pages
+
+validation:
+  check_naming: true
+  check_nfo: true
+  check_rar: true
+  check_sample: true
+  check_sfv: true
+
+web:
+  debug: true
+  host: 0.0.0.0
+  port: 5000
+  releases_folder: releases
+  upload_folder: uploads
+  ebooks_folder: ebooks
+  default_output_folder: null
+
+zip:
+  allowed_sizes:
+    - 5000000      # 5MB
+    - 10000000     # 10MB
+    - 50000000     # 50MB
+    - 100000000    # 100MB
+    - 150000000    # 150MB
+    - 200000000    # 200MB
+    - 250000000    # 250MB
+  use_83_rule: true

@@ -1,0 +1,64 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: packer_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpassword}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-packer}
+      MYSQL_USER: ${MYSQL_USER:-packer}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-packer}
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD:-rootpassword}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - packer_network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: packer_backend
+    environment:
+      DATABASE_URL: mysql+pymysql://${MYSQL_USER:-packer}:${MYSQL_PASSWORD:-packer}@mysql:3306/${MYSQL_DATABASE:-packer}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-change-this-secret-key-in-production}
+      API_KEYS_ENCRYPTION_KEY: ${API_KEYS_ENCRYPTION_KEY:-}
+      FLASK_ENV: ${FLASK_ENV:-production}
+      RELEASES_FOLDER: /app/releases
+    ports:
+      - "${BACKEND_PORT:-5000}:5000"
+    volumes:
+      - releases_data:/app/releases
+      - uploads_data:/app/uploads
+      - logs_data:/app/logs
+    depends_on:
+      mysql:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+    networks:
+      - packer_network
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+    driver: local
+  releases_data:
+    driver: local
+  uploads_data:
+    driver: local
+  logs_data:
+    driver: local
+
+networks:
+  packer_network:
+    driver: bridge

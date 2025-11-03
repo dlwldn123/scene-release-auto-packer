@@ -1,0 +1,1 @@
+* 14b4990 ✨ Amélioration UX/UI: Responsive design, Modals Bootstrap, Tooltips, Animations jQuery

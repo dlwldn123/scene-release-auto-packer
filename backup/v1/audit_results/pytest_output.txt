@@ -1,0 +1,134 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.2, pytest-7.2.1, pluggy-1.0.0+repack -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/deffice/projects/ebook.scene.packer
+collecting ... collected 109 items / 9 errors
+
+==================================== ERRORS ====================================
+__________________ ERROR collecting tests/test_api_config.py ___________________
+ImportError while importing test module '/home/deffice/projects/ebook.scene.packer/tests/test_api_config.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_api_config.py:8: in <module>
+    from flask import Flask
+E   ModuleNotFoundError: No module named 'flask'
+________________ ERROR collecting tests/test_docs_packaging.py _________________
+ImportError while importing test module '/home/deffice/projects/ebook.scene.packer/tests/test_docs_packaging.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_docs_packaging.py:10: in <module>
+    from src.packaging.docs_packer import extract_docs_metadata, pack_docs_release
+src/packaging/docs_packer.py:12: in <module>
+    import PyPDF2
+E   ModuleNotFoundError: No module named 'PyPDF2'
+__________________ ERROR collecting tests/test_ftp_upload.py ___________________
+ImportError while importing test module '/home/deffice/projects/ebook.scene.packer/tests/test_ftp_upload.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_ftp_upload.py:11: in <module>
+    from web.models.destination import Destination
+web/models/__init__.py:5: in <module>
+    from web.models.api_config import ApiConfig
+web/models/api_config.py:9: in <module>
+    from web.crypto import get_cipher
+web/crypto.py:9: in <module>
+    from cryptography.fernet import Fernet
+E   ModuleNotFoundError: No module named 'cryptography'
+____________ ERROR collecting tests/test_integration_blueprints.py _____________
+ImportError while importing test module '/home/deffice/projects/ebook.scene.packer/tests/test_integration_blueprints.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_integration_blueprints.py:10: in <module>
+    from flask import Flask
+E   ModuleNotFoundError: No module named 'flask'
+_____________ ERROR collecting tests/test_integration_services.py ______________
+ImportError while importing test module '/home/deffice/projects/ebook.scene.packer/tests/test_integration_services.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_integration_services.py:14: in <module>
+    from web.app import create_app
+web/app.py:13: in <module>
+    from flask import (
+E   ModuleNotFoundError: No module named 'flask'
+____________________ ERROR collecting tests/test_schemas.py ____________________
+ImportError while importing test module '/home/deffice/projects/ebook.scene.packer/tests/test_schemas.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_schemas.py:6: in <module>
+    from marshmallow import ValidationError as MarshmallowValidationError
+E   ModuleNotFoundError: No module named 'marshmallow'
+___________________ ERROR collecting tests/test_templates.py ___________________
+ImportError while importing test module '/home/deffice/projects/ebook.scene.packer/tests/test_templates.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_templates.py:12: in <module>
+    from web.models.template import NfoTemplate
+web/models/__init__.py:5: in <module>
+    from web.models.api_config import ApiConfig
+web/models/api_config.py:9: in <module>
+    from web.crypto import get_cipher
+web/crypto.py:9: in <module>
+    from cryptography.fernet import Fernet
+E   ModuleNotFoundError: No module named 'cryptography'
+_____________ ERROR collecting tests/test_templates_integration.py _____________
+ImportError while importing test module '/home/deffice/projects/ebook.scene.packer/tests/test_templates_integration.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_templates_integration.py:14: in <module>
+    from web.app import create_app
+web/app.py:13: in <module>
+    from flask import (
+E   ModuleNotFoundError: No module named 'flask'
+____________________ ERROR collecting tests/test_tv_apis.py ____________________
+ImportError while importing test module '/home/deffice/projects/ebook.scene.packer/tests/test_tv_apis.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/lib/python3.11/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+tests/test_tv_apis.py:10: in <module>
+    from src.metadata.tv_apis import TvApiEnricher
+src/metadata/tv_apis.py:10: in <module>
+    from flask_caching import Cache
+E   ModuleNotFoundError: No module named 'flask_caching'
+=============================== warnings summary ===============================
+tests/e2e/test_preferences_paths_destinations_playwright.py:14
+  /home/deffice/projects/ebook.scene.packer/tests/e2e/test_preferences_paths_destinations_playwright.py:14: PytestUnknownMarkWarning: Unknown pytest.mark.e2e - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.e2e
+
+tests/e2e/test_preferences_paths_destinations_playwright.py:56
+  /home/deffice/projects/ebook.scene.packer/tests/e2e/test_preferences_paths_destinations_playwright.py:56: PytestUnknownMarkWarning: Unknown pytest.mark.e2e - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.e2e
+
+tests/e2e/test_preferences_paths_destinations_playwright.py:100
+  /home/deffice/projects/ebook.scene.packer/tests/e2e/test_preferences_paths_destinations_playwright.py:100: PytestUnknownMarkWarning: Unknown pytest.mark.e2e - is this a typo?  You can register custom marks to avoid this warning - for details, see https://docs.pytest.org/en/stable/how-to/mark.html
+    @pytest.mark.e2e
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR tests/test_api_config.py
+ERROR tests/test_docs_packaging.py
+ERROR tests/test_ftp_upload.py
+ERROR tests/test_integration_blueprints.py
+ERROR tests/test_integration_services.py
+ERROR tests/test_schemas.py
+ERROR tests/test_templates.py
+ERROR tests/test_templates_integration.py
+ERROR tests/test_tv_apis.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 9 errors during collection !!!!!!!!!!!!!!!!!!!!
+======================== 3 warnings, 9 errors in 0.25s =========================

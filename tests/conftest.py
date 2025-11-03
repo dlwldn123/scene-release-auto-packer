@@ -9,9 +9,6 @@ from typing import TYPE_CHECKING, Iterator
 
 import pytest
 
-from web.app import create_app
-from web.extensions import db
-
 if TYPE_CHECKING:
     from flask import Flask
     from flask.testing import FlaskClient
@@ -20,10 +17,25 @@ if TYPE_CHECKING:
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
+# Conditional import for Flask fixtures (only if web/ exists)
+_web_exists = (project_root / "web").exists()
+if _web_exists:
+    try:
+        from web.app import create_app
+        from web.extensions import db
+    except ImportError:
+        _web_exists = False
+
 
 @pytest.fixture
 def app(tmp_path: Path) -> Iterator["Flask"]:
-    """Flask application configured for tests."""
+    """Flask application configured for tests.
+    
+    Only available if web/ module exists.
+    """
+    if not _web_exists:
+        pytest.skip("web/ module not available (Phase 0 only)")
+    
     os.environ["TEST_DB_PATH"] = str(tmp_path / "pytest.sqlite")
     app = create_app("testing")
 
@@ -38,11 +50,21 @@ def app(tmp_path: Path) -> Iterator["Flask"]:
 
 @pytest.fixture
 def client(app: "Flask") -> "FlaskClient":
-    """Flask test client."""
+    """Flask test client.
+    
+    Only available if web/ module exists.
+    """
+    if not _web_exists:
+        pytest.skip("web/ module not available (Phase 0 only)")
     return app.test_client()
 
 
 @pytest.fixture
 def auth_headers(app: "Flask") -> dict[str, str]:
-    """Default authentication headers (filled in tests as needed)."""
+    """Default authentication headers (filled in tests as needed).
+    
+    Only available if web/ module exists.
+    """
+    if not _web_exists:
+        pytest.skip("web/ module not available (Phase 0 only)")
     return {}

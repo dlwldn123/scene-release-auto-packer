@@ -1,0 +1,41 @@
+{
+  "api": {
+    "enable_googlebooks": true,
+    "enable_openlibrary": true,
+    "rate_limit_delay": 0.5,
+    "timeout": 10
+  },
+  "nfo": {
+    "ascii_art": true,
+    "max_width": 80,
+    "template_path": null
+  },
+  "rar": {
+    "create_for_zip": true,
+    "method": 0
+  },
+  "zip": {
+    "allowed_sizes": [
+      5000000,
+      10000000
+    ],
+    "use_83_rule": true
+  },
+  "validation": {
+    "check_naming": true,
+    "check_nfo": true,
+    "check_rar": true,
+    "check_sample": true,
+    "check_sfv": true
+  },
+  "sample": {
+    "pdf": {
+      "amount": 2,
+      "type": "pages"
+    },
+    "epub": {
+      "amount": 1,
+      "type": "chapter"
+    }
+  }
+}

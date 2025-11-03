@@ -1,11 +1,12 @@
 [run]
-source = web,src
+source = web,src,tests/phase0
 omit = 
     */tests/*
     */venv/*
     */__pycache__/*
     */migrations/*
     web/app.py
+    tests/e2e/*
 
 [report]
 exclude_lines =

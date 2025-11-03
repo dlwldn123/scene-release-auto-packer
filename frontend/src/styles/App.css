@@ -1,19 +1,6 @@
-.app-shell {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-}
+/** App-specific styles. */
 
 .app-header {
-  text-align: center;
   padding: 2rem;
-  border-radius: 0.75rem;
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-}
-
-.app-header h1 {
-  margin-bottom: 0.75rem;
+  text-align: center;
 }
