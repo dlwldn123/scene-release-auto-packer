@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from flask import Blueprint, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from sqlalchemy import or_
 
 from web.extensions import db
 from web.models import Release, User
@@ -71,7 +70,7 @@ def list_releases() -> tuple[dict, int]:
     if search:
         # MySQL JSON search: convert JSON to text and use LIKE
         # Cast JSON column to TEXT for LIKE search
-        from sqlalchemy import cast, String
+        from sqlalchemy import String, cast
 
         search_pattern = f"%{search}%"
         query = query.filter(
@@ -89,6 +88,11 @@ def list_releases() -> tuple[dict, int]:
             query = query.order_by(Release.release_type.desc())
         else:
             query = query.order_by(Release.release_type.asc())
+    elif sort_by == "status":
+        if sort_order == "desc":
+            query = query.order_by(Release.status.desc())
+        else:
+            query = query.order_by(Release.status.asc())
     else:
         # Default: newest first
         query = query.order_by(Release.created_at.desc())

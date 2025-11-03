@@ -38,6 +38,11 @@ export interface ReleaseListResponse {
   };
 }
 
+export interface ActionResponse {
+  message: string;
+  job_id: number;
+}
+
 export const releasesApi = {
   /**
    * List releases with filters and pagination.
@@ -79,10 +84,13 @@ export const releasesApi = {
    * Update release.
    */
   async update(releaseId: number, data: Partial<Release>) {
-    return apiRequest<{ release: Release }>(`/releases/${releaseId}`, {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    });
+    return apiRequest<{ release: Release; message: string }>(
+      `/releases/${releaseId}`,
+      {
+        method: 'PUT',
+        body: JSON.stringify(data),
+      }
+    );
   },
 
   /**
@@ -91,6 +99,46 @@ export const releasesApi = {
   async delete(releaseId: number) {
     return apiRequest<{ message: string }>(`/releases/${releaseId}`, {
       method: 'DELETE',
+    });
+  },
+
+  /**
+   * NFOFIX action - Fix NFO file.
+   */
+  async nfofix(releaseId: number) {
+    return apiRequest<ActionResponse>(`/releases/${releaseId}/actions/nfofix`, {
+      method: 'POST',
+    });
+  },
+
+  /**
+   * READNFO action - Read NFO and regenerate structure.
+   */
+  async readnfo(releaseId: number) {
+    return apiRequest<ActionResponse>(
+      `/releases/${releaseId}/actions/readnfo`,
+      {
+        method: 'POST',
+      }
+    );
+  },
+
+  /**
+   * REPACK action - Repack release with new options.
+   */
+  async repack(releaseId: number, options?: Record<string, unknown>) {
+    return apiRequest<ActionResponse>(`/releases/${releaseId}/actions/repack`, {
+      method: 'POST',
+      body: options ? JSON.stringify(options) : undefined,
+    });
+  },
+
+  /**
+   * DIRFIX action - Fix directory structure.
+   */
+  async dirfix(releaseId: number) {
+    return apiRequest<ActionResponse>(`/releases/${releaseId}/actions/dirfix`, {
+      method: 'POST',
     });
   },
 };

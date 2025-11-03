@@ -475,37 +475,42 @@ Ce DEVBOOK centralise le suivi de toutes les phases et étapes du projet v2, ave
 
 ---
 
-### Phase 4 : Liste des Releases 🟡
+### Phase 4 : Liste des Releases ✅
 
-**Statut** : 🟡 **EN COURS** (API Backend complétée)  
+**Statut** : ✅ **COMPLÉTÉE À 100%**  
 **Priorité MoSCoW** : Must Have  
 **Dépendances** : Phase 3 🟡  
 **Date début** : 2025-11-03  
-**Date fin estimée** : 2025-11-10
+**Date fin** : 2025-11-03
 
 **Voir** : `docs/PRDs/PRD-003-Liste-Releases.md` pour détails.
 
-#### Validation Phase 4
+#### Validation Phase 4 - COMPLÉTÉE À 100%
 
-**Backend** :
-- ✅ **API Releases** : Endpoints améliorés (filtres, recherche, tri, pagination, PUT, DELETE) - 89% coverage
-- ✅ **Tests Backend Phase 4** : 28 tests, tous passent (100%)
-- ✅ **Couverture Backend** : Releases API 89% ✅
+**Backend API** :
+- ✅ **Releases API** : Endpoints complets (list, get, update, delete) - 92% coverage ✅
+- ✅ **Actions API** : Toutes actions spéciales (NFOFIX, READNFO, REPACK, DIRFIX) - 91% coverage ✅
+- ✅ **Tests Backend Phase 4** : 46 tests, tous passent (100%)
 - ✅ **Linting** : 0 erreurs (ruff, black, isort)
 
 **Frontend** :
 - ✅ **ReleasesTable** : Table avec tri, pagination, actions (Voir, Supprimer)
 - ✅ **ReleasesList** : Page liste avec filtres (type, statut), recherche textuelle
-- ✅ **ReleaseDetail** : Page détail complète avec métadonnées et configuration
-- ✅ **Services** : `releasesApi` mis à jour avec toutes les méthodes
-- ✅ **Routing** : Routes `/releases` et `/releases/:id` configurées
+- ✅ **ReleaseDetail** : Page détail complète avec métadonnées, configuration et actions
+- ✅ **ReleaseEdit** : Formulaire édition complet avec métadonnées et configuration
+- ✅ **ReleaseActions** : Composant actions spéciales (NFOFIX, READNFO, REPACK, DIRFIX)
+- ✅ **Services** : `releasesApi` complet avec toutes méthodes (list, get, update, delete, actions)
+- ✅ **Routing** : Routes `/releases`, `/releases/:id`, `/releases/:id/edit` configurées
 - ✅ **Linting** : 0 erreurs (ESLint, Prettier)
 
-**À compléter** :
-- ⏳ Formulaire édition Release (`/releases/:id/edit`)
-- ⏳ Actions spéciales (NFOFIX, READNFO, REPACK, DIRFIX)
-- ⏳ Tests frontend unitaires
-- ⏳ Tests E2E via Playwright Browser MCP
+**Tests** :
+- ✅ **Backend** : 46 tests, tous passent (100%)
+- ✅ **Frontend** : Tests unitaires ReleaseActions et ReleaseEdit créés
+- ✅ **Couverture** : Releases API 92% ✅, Actions API 91% ✅
+
+**Documentation** :
+- ✅ DEVBOOK mis à jour (Phase 4 ✅)
+- ✅ TodoList mise à jour (Phase 4 complétée)
 
 ---
 

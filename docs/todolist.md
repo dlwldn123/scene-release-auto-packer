@@ -592,7 +592,172 @@ def test_dashboard_stats():
 
 ---
 
-**Note** : Les phases suivantes (3-9) seront détaillées de la même manière.  
+---
+
+## Phase 4 : Liste des Releases 🟡
+
+### Étape 4.1 : API Liste Releases ✅
+
+**Statut** : ✅ Terminée  
+**Priorité** : Must Have  
+**Estimation** : 3 jours  
+**Dépendances** : Phase 3
+
+#### Sous-étapes
+
+##### 4.1.1 : API Filtres et Recherche
+- ✅ Endpoint GET /api/releases avec filtres (type, statut, groupe, user_id)
+- ✅ Recherche textuelle dans métadonnées JSON
+- ✅ Tri par champ (created_at, release_type, status)
+- ✅ Pagination avec info complète
+
+##### 4.1.2 : API Détail Release
+- ✅ Endpoint GET /api/releases/:id
+- ✅ Vérification permissions (READ)
+- ✅ Retour métadonnées complètes
+
+##### 4.1.3 : API Édition Release
+- ✅ Endpoint PUT /api/releases/:id
+- ✅ Mise à jour métadonnées, config, statut
+- ✅ Vérification permissions (WRITE)
+
+##### 4.1.4 : API Suppression Release
+- ✅ Endpoint DELETE /api/releases/:id
+- ✅ Vérification permissions (DELETE/admin)
+
+**Tests TDD** :
+- ✅ 28 tests backend passent (100%)
+- ✅ Couverture Releases API : 92% ✅
+- ✅ Couverture Actions API : 91% ✅
+
+**Critères de validation** :
+- ✅ Tous endpoints fonctionnels
+- ✅ Permissions vérifiées
+- ✅ Tests passent
+- ✅ Couverture ≥90%
+
+---
+
+### Étape 4.2 : Actions Spéciales ✅
+
+**Statut** : ✅ Terminée  
+**Priorité** : Must Have  
+**Estimation** : 2 jours  
+**Dépendances** : Étape 4.1
+
+#### Sous-étapes
+
+##### 4.2.1 : API NFOFIX
+- ✅ Endpoint POST /api/releases/:id/actions/nfofix
+- ✅ Création job asynchrone
+- ✅ Vérification permissions (MOD)
+
+##### 4.2.2 : API READNFO
+- ✅ Endpoint POST /api/releases/:id/actions/readnfo
+- ✅ Vérification file_path requis
+- ✅ Création job asynchrone
+
+##### 4.2.3 : API REPACK
+- ✅ Endpoint POST /api/releases/:id/actions/repack
+- ✅ Merge options avec config existante
+- ✅ Création job asynchrone
+
+##### 4.2.4 : API DIRFIX
+- ✅ Endpoint POST /api/releases/:id/actions/dirfix
+- ✅ Vérification file_path requis
+- ✅ Création job asynchrone
+
+**Tests TDD** :
+- ✅ 13 tests actions passent (100%)
+- ✅ Couverture Actions API : 91% ✅
+
+**Critères de validation** :
+- ✅ Toutes actions fonctionnelles
+- ✅ Jobs créés correctement
+- ✅ Tests passent
+- ✅ Couverture ≥90%
+
+---
+
+### Étape 4.3 : Frontend Liste Releases ✅
+
+**Statut** : ✅ Terminée  
+**Priorité** : Must Have  
+**Estimation** : 3 jours  
+**Dépendances** : Étape 4.1
+
+#### Sous-étapes
+
+##### 4.3.1 : Composant ReleasesTable
+- ✅ Table avec colonnes (ID, Titre, Type, Statut, Date, Actions)
+- ✅ Tri par colonnes (icônes Bootstrap)
+- ✅ Pagination fonctionnelle
+- ✅ Actions (Voir, Supprimer)
+
+##### 4.3.2 : Page ReleasesList
+- ✅ Filtres (type, statut)
+- ✅ Recherche textuelle
+- ✅ Bouton "Nouvelle Release"
+- ✅ Réinitialisation filtres
+
+**Critères de validation** :
+- ✅ Table fonctionnelle
+- ✅ Filtres appliqués
+- ✅ Tri fonctionnel
+- ✅ Tests frontend passent
+
+---
+
+### Étape 4.4 : Frontend Détail Release ✅
+
+**Statut** : ✅ Terminée  
+**Priorité** : Must Have  
+**Estimation** : 2 jours  
+**Dépendances** : Étape 4.1
+
+#### Sous-étapes
+
+##### 4.4.1 : Page ReleaseDetail
+- ✅ Affichage informations générales
+- ✅ Affichage métadonnées
+- ✅ Affichage configuration
+- ✅ Actions (Éditer, Supprimer)
+
+##### 4.4.2 : Composant ReleaseActions
+- ✅ Boutons actions spéciales (NFOFIX, READNFO, REPACK, DIRFIX)
+- ✅ États loading/success/error
+- ✅ Callback onActionComplete
+
+**Critères de validation** :
+- ✅ Page détail complète
+- ✅ Actions fonctionnelles
+- ✅ Tests frontend passent
+
+---
+
+### Étape 4.5 : Frontend Édition Release ✅
+
+**Statut** : ✅ Terminée  
+**Priorité** : Must Have  
+**Estimation** : 2 jours  
+**Dépendances** : Étape 4.1
+
+#### Sous-étapes
+
+##### 4.5.1 : Page ReleaseEdit
+- ✅ Formulaire métadonnées (champs communs + JSON)
+- ✅ Formulaire configuration (statut + JSON)
+- ✅ Validation avant sauvegarde
+- ✅ Navigation après sauvegarde
+
+**Critères de validation** :
+- ✅ Formulaire fonctionnel
+- ✅ Sauvegarde API
+- ✅ Tests frontend passent
+
+---
+
+**Note** : Les phases suivantes (5-9) seront détaillées de la même manière.  
 **Voir** : `docs/PRDs/` pour détails fonctionnels de chaque fonctionnalité.
 
 ---
@@ -600,13 +765,13 @@ def test_dashboard_stats():
 ## 📈 Métriques
 
 - **Total tâches** : 245 (estimation)
-- **Tâches terminées** : 5
-- **Tâches en cours** : 8
-- **Tâches restantes** : 232
-- **Progression** : ~2%
+- **Tâches terminées** : 45+ (Phase 0-4 complétées)
+- **Tâches en cours** : 0
+- **Tâches restantes** : ~200
+- **Progression** : ~18%
 
 ---
 
-**Dernière mise à jour** : 2025-11-01  
+**Dernière mise à jour** : 2025-11-03  
 **Prochaine mise à jour** : À chaque étape complétée
 

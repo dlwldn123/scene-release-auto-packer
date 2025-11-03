@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { PageLayout } from '../components/PageLayout';
+import { ReleaseActions } from '../components/ReleaseActions';
 import type { Release } from '../services/releases';
 import { releasesApi } from '../services/releases';
 
@@ -97,6 +98,7 @@ export function ReleaseDetail() {
         <Link
           to={`/releases/${release.id}/edit`}
           className="btn btn-primary ms-2"
+          aria-label="Éditer cette release"
         >
           <i className="bi bi-pencil" aria-hidden="true" /> Éditer
         </Link>
@@ -199,7 +201,7 @@ export function ReleaseDetail() {
       </div>
 
       {Object.keys(config).length > 0 && (
-        <div className="card">
+        <div className="card mb-3">
           <div className="card-header">
             <h5 className="mb-0">Configuration</h5>
           </div>
@@ -208,6 +210,24 @@ export function ReleaseDetail() {
           </div>
         </div>
       )}
+
+      <ReleaseActions
+        releaseId={release.id}
+        onActionComplete={() => {
+          // Refresh release data after action
+          const fetchRelease = async () => {
+            try {
+              const response = await releasesApi.get(release.id);
+              if (response.data?.release) {
+                setRelease(response.data.release);
+              }
+            } catch {
+              // Ignore errors
+            }
+          };
+          fetchRelease();
+        }}
+      />
     </PageLayout>
   );
 }

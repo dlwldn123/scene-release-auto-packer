@@ -7,6 +7,7 @@ import { Config } from './pages/Config';
 import { Dashboard } from './pages/Dashboard';
 import { NewRelease } from './pages/NewRelease';
 import { ReleaseDetail } from './pages/ReleaseDetail';
+import { ReleaseEdit } from './pages/ReleaseEdit';
 import { ReleasesList } from './pages/ReleasesList';
 import { Roles } from './pages/Roles';
 import { Rules } from './pages/Rules';
@@ -27,6 +28,7 @@ function App() {
               <Route path="/" element={<Dashboard />} />
               <Route path="/releases/new" element={<NewRelease />} />
               <Route path="/releases" element={<ReleasesList />} />
+              <Route path="/releases/:id/edit" element={<ReleaseEdit />} />
               <Route path="/releases/:id" element={<ReleaseDetail />} />
               <Route path="/rules" element={<Rules />} />
               <Route path="/users" element={<Users />} />
