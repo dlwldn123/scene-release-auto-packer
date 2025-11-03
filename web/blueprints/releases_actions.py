@@ -104,7 +104,7 @@ def readnfo_release(release_id: int) -> tuple[dict, int]:
     if not release:
         return {"message": "Release not found"}, 404
 
-    if not _check_permission(release, current_user_id, "readnfo"):
+    if not _check_permission(release, user, "readnfo"):
         return {"message": "Permission denied"}, 403
 
     if not release.file_path:
@@ -158,7 +158,7 @@ def repack_release(release_id: int) -> tuple[dict, int]:
     if not release:
         return {"message": "Release not found"}, 404
 
-    if not _check_permission(release, current_user_id, "repack"):
+    if not _check_permission(release, user, "repack"):
         return {"message": "Permission denied"}, 403
 
     data = request.get_json() or {}
@@ -209,7 +209,7 @@ def dirfix_release(release_id: int) -> tuple[dict, int]:
     if not release:
         return {"message": "Release not found"}, 404
 
-    if not _check_permission(release, current_user_id, "dirfix"):
+    if not _check_permission(release, user, "dirfix"):
         return {"message": "Permission denied"}, 403
 
     if not release.file_path:

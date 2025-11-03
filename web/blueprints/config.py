@@ -175,6 +175,12 @@ def update_configuration(config_id: int) -> tuple[dict, int]:
     Returns:
         JSON response with updated configuration.
     """
+    current_user_id = get_jwt_identity()
+    user = db.session.get(User, current_user_id)
+
+    if not user:
+        return {"message": "User not found"}, 404
+
     config = db.session.get(Configuration, config_id)
 
     if not config:
