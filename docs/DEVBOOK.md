@@ -519,15 +519,53 @@ Ce DEVBOOK centralise le suivi de toutes les phases et étapes du projet v2, ave
 
 ---
 
-### Phase 4 : Liste des Releases ⏳
+### Phase 4 : Liste des Releases ✅
 
-**Statut** : ⏳ Non commencée  
+**Statut** : ✅ Terminée  
 **Priorité MoSCoW** : Must Have  
 **Dépendances** : Phase 3  
-**Date début estimée** : 2026-01-10  
-**Date fin estimée** : 2026-01-24
+**Date début** : 2025-11-03T19:05:00+00:00  
+**Date fin** : 2025-11-03T19:05:55+00:00
 
 **Voir** : `docs/PRDs/PRD-003-Liste-Releases.md` pour détails.
+
+#### Résultats Phase 4
+
+**Tests** : ✅ 4/4 passent (tests/phase4/test_releases_api.py)  
+**Couverture** : ✅ 100% sur web/blueprints/releases.py  
+**Frontend** : ✅ Build réussi, composants ReleasesTable et ReleasesList implémentés  
+**Linting** : ✅ 0 erreurs (ruff, black)
+
+#### Étapes Complétées
+
+##### Étape 4.1 : API Releases ✅
+- ✅ Endpoint GET `/api/releases` avec filtres (release_type, status, user_id)
+- ✅ Endpoint GET `/api/releases/<id>` pour récupérer une release
+- ✅ Endpoint DELETE `/api/releases/<id>` pour supprimer une release
+- ✅ Pagination (page, per_page, total, pages)
+- ✅ Protection JWT sur tous les endpoints
+- ✅ Vérification permissions (utilisateur peut voir/supprimer ses propres releases)
+
+##### Étape 4.2 : Composant ReleasesList ✅
+- ✅ Page ReleasesList avec filtres (type, statut)
+- ✅ Composant ReleasesTable avec affichage tableau
+- ✅ Pagination frontend intégrée
+- ✅ États loading/error gérés
+- ✅ Service API releases.ts créé
+
+##### Étape 4.3 : Tests Phase 4 ✅
+- ✅ Tests API : list_releases, list_releases_with_filters, get_release, delete_release
+- ✅ Tous tests passent (4/4)
+- ✅ Couverture 100% sur blueprint releases
+
+#### Validation DoD Phase 4
+
+- ✅ Code implémenté à 100%
+- ✅ Tests à 100% (4/4 passent)
+- ✅ Couverture ≥90% (100% sur releases.py)
+- ✅ Documentation à jour (DEVBOOK, todolist)
+- ✅ Linters passent (ruff, black)
+- ✅ Frontend compile sans erreurs
 
 ---
 

@@ -276,16 +276,88 @@ def test_dashboard_stats():
 
 ---
 
-## 📈 Métriques
+### Phase 4 : Liste des Releases ✅
 
-- **Total tâches** : 245 (estimation)
-- **Tâches terminées** : 5
-- **Tâches en cours** : 8
-- **Tâches restantes** : 232
-- **Progression** : ~2%
+**Statut** : ✅ Terminée  
+**Date complétion** : 2025-11-03T19:05:55+00:00
+
+#### Étape 4.1 : API Releases ✅
+
+**Statut** : ✅ Terminée
+
+##### 4.1.1 : Endpoint GET /api/releases ✅
+- ✅ List releases avec pagination
+- ✅ Filtres : release_type, status, user_id
+- ✅ Protection JWT
+- ✅ Pagination (page, per_page, total, pages)
+
+##### 4.1.2 : Endpoint GET /api/releases/<id> ✅
+- ✅ Récupérer release par ID
+- ✅ Vérification permissions
+- ✅ Retour JSON avec release complète
+
+##### 4.1.3 : Endpoint DELETE /api/releases/<id> ✅
+- ✅ Supprimer release
+- ✅ Vérification permissions (propriétaire uniquement)
+- ✅ Confirmation suppression
+
+**Critères de validation** :
+- ✅ Tous endpoints fonctionnent
+- ✅ Tests passent (4/4)
+- ✅ Couverture 100% sur releases.py
+- ✅ Permissions vérifiées
+
+#### Étape 4.2 : Composant ReleasesList ✅
+
+**Statut** : ✅ Terminée
+
+##### 4.2.1 : Page ReleasesList ✅
+- ✅ Composant ReleasesList avec filtres
+- ✅ Filtres type et statut
+- ✅ Bouton réinitialiser filtres
+
+##### 4.2.2 : Composant ReleasesTable ✅
+- ✅ Tableau avec colonnes (ID, Type, Status, Date, Actions)
+- ✅ États loading/error gérés
+- ✅ Pagination frontend intégrée
+- ✅ Badges pour type et statut
+
+##### 4.2.3 : Service API releases.ts ✅
+- ✅ Méthode list() avec paramètres
+- ✅ Méthode get() pour récupérer release
+- ✅ Méthode delete() pour supprimer release
+
+**Critères de validation** :
+- ✅ Composants fonctionnent
+- ✅ Filtres appliqués correctement
+- ✅ Pagination fonctionnelle
+- ✅ Frontend compile sans erreurs
+
+#### Étape 4.3 : Tests Phase 4 ✅
+
+**Statut** : ✅ Terminée
+
+- ✅ Tests API : list_releases, list_releases_with_filters, get_release, delete_release
+- ✅ Tous tests passent (4/4)
+- ✅ Couverture 100% sur blueprint releases
+
+**Critères de validation** :
+- ✅ Tests passent à 100%
+- ✅ Couverture ≥90% (100%)
+- ✅ Documentation à jour
 
 ---
 
-**Dernière mise à jour** : 2025-11-01  
+## 📈 Métriques
+
+- **Total tâches** : 245 (estimation)
+- **Tâches terminées** : 9
+- **Tâches en cours** : 0
+- **Tâches restantes** : 236
+- **Progression** : ~4%
+
+---
+
+**Dernière mise à jour** : 2025-11-03T19:05:55+00:00  
 **Prochaine mise à jour** : À chaque étape complétée
 
