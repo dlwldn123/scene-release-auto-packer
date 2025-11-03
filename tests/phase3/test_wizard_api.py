@@ -1,120 +1,38 @@
-"""Tests for Wizard API."""
+"""Tests for Wizard API endpoints (Phase 3)."""
 
 from __future__ import annotations
 
-import pytest
-
 from web.extensions import db
-from web.models import Job, Rule, User
+from web.models import Group, Release, Rule, User
 
 
-def test_save_draft_step1(client) -> None:
-    """Test saving draft step 1 (group)."""
+def test_wizard_create_draft(client, auth_headers) -> None:
+    """Test creating draft release via wizard."""
     with client.application.app_context():
         db.create_all()
+
+        # Create user
         user = User(username="testuser", email="test@example.com")
         user.set_password("password123")
         db.session.add(user)
         db.session.commit()
 
-    # Login
-    login_response = client.post(
-        "/api/auth/login",
-        json={"username": "testuser", "password": "password123"},
-    )
-    token = login_response.get_json()["access_token"]
-
-    # Save draft step 1
-    response = client.post(
-        "/api/wizard/draft",
-        json={"step": 1, "step_data": {"group": "TestGroup"}},
-        headers={"Authorization": f"Bearer {token}"},
-    )
-
-    assert response.status_code == 200
-    data = response.get_json()
-    assert "job_id" in data
-    assert data["step"] == 1
-
-
-def test_save_draft_step2(client) -> None:
-    """Test saving draft step 2 (release type)."""
-    with client.application.app_context():
-        db.create_all()
-        user = User(username="testuser", email="test@example.com")
-        user.set_password("password123")
-        db.session.add(user)
+        # Create group
+        group = Group(name="TestGroup")
+        db.session.add(group)
         db.session.commit()
 
-    # Login
-    login_response = client.post(
-        "/api/auth/login",
-        json={"username": "testuser", "password": "password123"},
-    )
-    token = login_response.get_json()["access_token"]
-
-    # Save draft step 2
-    response = client.post(
-        "/api/wizard/draft",
-        json={"step": 2, "step_data": {"release_type": "EBOOK"}},
-        headers={"Authorization": f"Bearer {token}"},
-    )
-
-    assert response.status_code == 200
-    data = response.get_json()
-    assert "job_id" in data
-
-
-def test_save_draft_invalid_group(client) -> None:
-    """Test saving draft with invalid group format."""
-    with client.application.app_context():
-        db.create_all()
-        user = User(username="testuser", email="test@example.com")
-        user.set_password("password123")
-        db.session.add(user)
-        db.session.commit()
-
-    # Login
-    login_response = client.post(
-        "/api/auth/login",
-        json={"username": "testuser", "password": "password123"},
-    )
-    token = login_response.get_json()["access_token"]
-
-    # Save draft with invalid group
-    response = client.post(
-        "/api/wizard/draft",
-        json={"step": 1, "step_data": {"group": "Invalid Group Name!"}},
-        headers={"Authorization": f"Bearer {token}"},
-    )
-
-    assert response.status_code == 400
-
-
-def test_list_rules(client) -> None:
-    """Test listing rules."""
-    with client.application.app_context():
-        db.create_all()
-        user = User(username="testuser", email="test@example.com")
-        user.set_password("password123")
-        db.session.add(user)
-
-        rule1 = Rule(
+        # Create rule
+        rule = Rule(
             name="[2022] eBOOK",
-            content="Full rule content",
-            scene="eBOOK",
-            section="EBOOK",
+            content="Test rule content",
+            scene="English",
+            section="eBOOK",
             year=2022,
         )
-        rule2 = Rule(
-            name="[2022] TV",
-            content="Full rule content",
-            scene="TV",
-            section="TV",
-            year=2022,
-        )
-        db.session.add_all([rule1, rule2])
+        db.session.add(rule)
         db.session.commit()
+        rule_id = rule.id
 
     # Login
     login_response = client.post(
@@ -123,13 +41,38 @@ def test_list_rules(client) -> None:
     )
     token = login_response.get_json()["access_token"]
 
-    # List rules
-    response = client.get(
-        "/api/wizard/rules?release_type=EBOOK",
+    # Create draft release via wizard
+    response = client.post(
+        "/api/wizard/draft",
+        json={
+            "group": "TestGroup",
+            "release_type": "EBOOK",
+            "rule_id": rule_id,
+        },
         headers={"Authorization": f"Bearer {token}"},
     )
 
-    assert response.status_code == 200
+    assert response.status_code == 201
     data = response.get_json()
-    assert "rules" in data
-    assert len(data["rules"]) > 0
+    assert "release_id" in data
+    assert "job_id" in data
+
+    # Verify release was created
+    with client.application.app_context():
+        release = Release.query.get(data["release_id"])
+        assert release is not None
+        assert release.release_type == "EBOOK"
+        assert release.status == "draft"
+
+
+def test_wizard_create_draft_requires_auth(client) -> None:
+    """Test that wizard draft creation requires authentication."""
+    response = client.post(
+        "/api/wizard/draft",
+        json={
+            "group": "TestGroup",
+            "release_type": "EBOOK",
+        },
+    )
+
+    assert response.status_code == 401

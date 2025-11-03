@@ -18,13 +18,20 @@ export interface Rule {
 
 export const wizardApi = {
   /**
-   * Save wizard draft.
+   * Create wizard draft (steps 1-3).
    */
-  async saveDraft(draft: WizardDraft) {
-    return apiRequest<{ job_id: number; step: number }>('/wizard/draft', {
-      method: draft.job_id ? 'PUT' : 'POST',
-      body: JSON.stringify(draft),
-    });
+  async createDraft(data: {
+    group: string;
+    release_type: string;
+    rule_id: number;
+  }) {
+    return apiRequest<{ release_id: number; job_id: number; message: string }>(
+      '/wizard/draft',
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+      }
+    );
   },
 
   /**

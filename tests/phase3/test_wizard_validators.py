@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import pytest
-
 from web.utils.validators import validate_release_type, validate_scene_group
 
 
