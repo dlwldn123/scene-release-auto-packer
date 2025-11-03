@@ -5,7 +5,7 @@ from __future__ import annotations
 from unittest.mock import Mock, patch
 
 from web.extensions import db
-from web.models import Rule, User
+from web.models import Permission, Role, Rule, User
 
 
 def test_list_scenerules_rules(client, app):
@@ -108,8 +108,22 @@ def test_list_scenerules_rules_with_local_indicator(client, app):
 def test_download_scenerules_rule_success(client, app):
     """Test download_scenerules_rule success."""
     with app.app_context():
+        # Create admin role with write permission
+        admin_role = Role(name="admin", description="Administrator")
+        db.session.add(admin_role)
+        
+        write_permission = db.session.query(Permission).filter_by(
+            resource="rules", action="write"
+        ).first()
+        if not write_permission:
+            write_permission = Permission(resource="rules", action="write")
+            db.session.add(write_permission)
+        
+        admin_role.permissions.append(write_permission)
+        
         user = User(username="testuser", email="test@test.com")
         user.set_password("password")
+        user.roles.append(admin_role)
         db.session.add(user)
         db.session.commit()
 
@@ -155,8 +169,22 @@ def test_download_scenerules_rule_success(client, app):
 def test_download_scenerules_rule_update_existing(client, app):
     """Test download_scenerules_rule updates existing rule."""
     with app.app_context():
+        # Create admin role with write permission
+        admin_role = Role(name="admin", description="Administrator")
+        db.session.add(admin_role)
+        
+        write_permission = db.session.query(Permission).filter_by(
+            resource="rules", action="write"
+        ).first()
+        if not write_permission:
+            write_permission = Permission(resource="rules", action="write")
+            db.session.add(write_permission)
+        
+        admin_role.permissions.append(write_permission)
+        
         user = User(username="testuser", email="test@test.com")
         user.set_password("password")
+        user.roles.append(admin_role)
         db.session.add(user)
         db.session.commit()
 
@@ -211,10 +239,24 @@ def test_download_scenerules_rule_update_existing(client, app):
 
 
 def test_download_scenerules_rule_missing_section(client, app):
-    """Test download_scenerules_rule with missing section."""
+    """Test download_scenerules_rule without section returns 400."""
     with app.app_context():
+        # Create admin role with write permission
+        admin_role = Role(name="admin", description="Administrator")
+        db.session.add(admin_role)
+        
+        write_permission = db.session.query(Permission).filter_by(
+            resource="rules", action="write"
+        ).first()
+        if not write_permission:
+            write_permission = Permission(resource="rules", action="write")
+            db.session.add(write_permission)
+        
+        admin_role.permissions.append(write_permission)
+        
         user = User(username="testuser", email="test@test.com")
         user.set_password("password")
+        user.roles.append(admin_role)
         db.session.add(user)
         db.session.commit()
 
@@ -240,8 +282,22 @@ def test_download_scenerules_rule_missing_section(client, app):
 def test_download_scenerules_rule_by_url(client, app):
     """Test download_scenerules_rule using URL."""
     with app.app_context():
+        # Create admin role with write permission
+        admin_role = Role(name="admin", description="Administrator")
+        db.session.add(admin_role)
+        
+        write_permission = db.session.query(Permission).filter_by(
+            resource="rules", action="write"
+        ).first()
+        if not write_permission:
+            write_permission = Permission(resource="rules", action="write")
+            db.session.add(write_permission)
+        
+        admin_role.permissions.append(write_permission)
+        
         user = User(username="testuser", email="test@test.com")
         user.set_password("password")
+        user.roles.append(admin_role)
         db.session.add(user)
         db.session.commit()
 
