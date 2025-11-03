@@ -126,13 +126,17 @@ export function RolesTable({
                   <button
                     className="btn btn-sm btn-outline-primary me-2"
                     onClick={() => onEdit && onEdit(role)}
+                    aria-label={`Éditer rôle ${role.name}`}
                   >
+                    <i className="bi bi-pencil me-1" aria-hidden="true" />
                     Éditer
                   </button>
                   <button
                     className="btn btn-sm btn-outline-danger"
                     onClick={() => handleDelete(role.id)}
+                    aria-label={`Supprimer rôle ${role.name}`}
                   >
+                    <i className="bi bi-trash me-1" aria-hidden="true" />
                     Supprimer
                   </button>
                 </td>
