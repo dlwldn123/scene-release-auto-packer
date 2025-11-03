@@ -13,151 +13,469 @@ Cette todoList découpe le projet en **phases**, **étapes** et **sous-étapes**
 
 ---
 
-## Phase 0 : Préparation (1 semaine) ✅
-
-**Statut** : ✅ **TERMINÉE À 100% DoD** (2025-11-03T17:45:00+00:00)
+## Phase 0 : Préparation (1 semaine)
 
 ### Étape 0.1 : Backup v1/ ✅
-- ✅ Répertoire `backup/v1/` créé avec copie complète de `v1/`
-- ✅ Structure préservée (tous fichiers/dossiers copiés)
-- ✅ Tests validation : 3/3 passent
 
-### Étape 0.2 : Documentation Structurée ✅
-- ✅ `docs/cdc.md`, `docs/DEVBOOK.md`, `docs/todolist.md`
-- ✅ PRDs 001 → 007 + README
-- ✅ `docs/BACKLOG_AGILE.md`, `docs/PROJECT_OVERVIEW.md`, `docs/TEST_PLAN.md`
-- ✅ `docs/RISKS_REGISTER.md`, `docs/DEPLOYMENT_PLAN.md`, `docs/MCP_TOOLS_GUIDE.md`
-- ✅ Tests validation : 11/11 passent
+**Statut** : ✅ Terminée  
+**Priorité** : Must Have  
+**Estimation** : 30 min
 
-### Étape 0.3 : Configuration Environnement Développement ✅
-- ✅ Installation dépendances (`requirements.txt`, `requirements-dev.txt`)
-- ✅ `pytest.ini`, `.coveragerc`, `pyproject.toml`, `package.json`
-- ✅ Scripts linters/formatteurs référencés (ruff, black, isort, eslint, prettier)
-- ✅ Tests validation : 4/4 passent
+#### Sous-étapes
+- ✅ Créer répertoire v1/
+- ✅ Copier tous les fichiers/dossiers (sauf .git) dans v1/
+- ✅ Vérifier structure préservée
+- ✅ Nettoyer fichiers doublons à la racine
 
-### Étape 0.4 : Setup TDD ✅
-- ✅ Structure tests : `tests/phase0/`, `tests/e2e/phase0/`
-- ✅ Tests de validation Phase 0 écrits (`test_phase0_validation.py` - 29 tests)
-- ✅ Tests E2E structure créée (`test_phase0_e2e.py` avec Playwright MCP)
-- ✅ `conftest.py` adapté pour Phase 0 (import conditionnel web/)
-- ✅ Tests validation : 4/4 passent
+**Critères de validation** :
+- ✅ Aucun fichier à la racine sauf .git et v1/
+- ✅ Tous les fichiers v1 présents dans v1/
 
-### Étape 0.5 : Règles Cursor ✅
-- ✅ Règles critiques chargées (`definition-of-done`, `tdd-methodology`, `testing-requirements`, `mcp-tools-usage`, etc.)
-- ✅ Règles UX/UI 2025, services métier, modèles ORM, blueprints API
-- ✅ Tests validation : 7/7 passent
+---
 
-### Étape 0.6 : Validation & Documentation ✅
-- ✅ Tests unitaires : 29/29 passent (100%)
-- ✅ Linting : black, isort passent (0 erreurs)
-- ✅ DEVBOOK Phase 0 marquée terminée avec date/heure
-- ✅ TodoList Phase 0 à jour
+### Étape 0.2 : Création Documentation Structurée 🔄
 
-**Critères de validation consolidés** :
-- ✅ Tests Phase 0 : 29/29 passent (100%)
-- ✅ Couverture : N/A (Phase 0 - pas de code production)
-- ✅ Linting : 0 erreurs (black, isort)
-- ✅ Documentation à jour (DEVBOOK, TodoList, README)
-- ✅ Aucune tâche Phase 0 restante
-- ✅ **Definition of Done** : Tous critères satisfaits à 100%
+**Statut** : 🟡 En cours  
+**Priorité** : Must Have  
+**Estimation** : 2 jours
 
-## Phase 1 : Infrastructure Core (2 semaines) ✅
+#### Sous-étapes
 
-**Statut** : ✅ **TERMINÉE À 100% DoD** (2025-11-03T17:48:21+00:00)
+##### 0.2.1 : CDC (Cahier des Charges)
+- ✅ Créer docs/cdc.md
+- ✅ Documenter vision, objectifs, fonctionnalités
+- ✅ Documenter contraintes techniques
+- ✅ Documenter méthodologies
 
-### Étape 1.1 : Setup Flask App Factory ✅
-- ✅ Structure `web/` (app factory, config, blueprints, extensions)
-- ✅ Configuration par environnement (.env via python-dotenv)
-- ✅ Blueprint health (`web/blueprints/health.py`)
-- ✅ Tests : `tests/phase1/test_app_factory.py` (5 tests passent)
+##### 0.2.2 : DEVBOOK
+- ✅ Créer docs/DEVBOOK.md
+- ⏳ Initialiser phases et étapes
+- ⏳ Configurer OKRs
+- ⏳ Créer journal modifications
 
-### Étape 1.2 : Base de Données MySQL ✅
-- ✅ SQLAlchemy + Flask-Migrate initialisés (`web/extensions.py`)
-- ✅ Modèles de base créés (`User`, `Role`, `Group`, `Permission`, `TokenBlocklist`)
-- ✅ Tables d'association (user_roles, user_groups, role_permissions)
-- ✅ Structure Alembic `migrations/` existante
-- ✅ Tests : `tests/phase1/test_database.py` (4 tests passent)
+##### 0.2.3 : TodoList
+- 🟡 Créer docs/todolist.md (ce fichier)
+- ⏳ Découper toutes les phases en sous-étapes
+- ⏳ Ajouter dépendances
+- ⏳ Ajouter estimations
 
-### Étape 1.3 : Authentification JWT ✅
-- ✅ Blueprint `auth` (login, refresh, logout, me)
-- ✅ Callbacks JWT (`web/security.py` - revocation, erreurs, lookup user)
-- ✅ TokenBlocklist persistant
-- ✅ Tests : `tests/phase1/test_authentication.py` (6 tests passent)
+##### 0.2.4 : PRDs (Product Requirement Documents)
+- ⏳ Créer docs/PRDs/README.md
+- ⏳ Créer PRD-001-Interface-Admin.md
+- ⏳ Créer PRD-002-Nouvelle-Release.md
+- ⏳ Créer PRD-003-Liste-Releases.md
+- ⏳ Créer PRD-004-Rules.md
+- ⏳ Créer PRD-005-Utilisateurs.md
+- ⏳ Créer PRD-006-Roles.md
+- ⏳ Créer PRD-007-Configurations.md
 
-### Étape 1.4 : Modèles de Base ✅
-- ✅ Méthodes de hashing (`User.set_password` / `User.check_password`)
-- ✅ Relations many-to-many (users↔roles, users↔groups, roles↔permissions)
-- ✅ Tests ORM complets (`tests/phase1/test_models.py` - 6 tests passent)
-- ✅ Couverture cumulée : 92% (21/21 tests passent)
+##### 0.2.5 : Backlog Agile
+- ⏳ Créer docs/BACKLOG_AGILE.md
+- ⏳ Définir Epics
+- ⏳ Définir User Stories
+- ⏳ Définir tâches techniques
+- ⏳ Prioriser avec MoSCoW et Eisenhower
 
-## Phase 2 : Interface Administration (3 semaines) ✅
+##### 0.2.6 : Project Overview
+- ⏳ Créer docs/PROJECT_OVERVIEW.md
+- ⏳ Documenter vision et portée
+- ⏳ Documenter phases principales
+- ⏳ Documenter méthodologies
 
-**Statut** : ✅ **TERMINÉE À 100% DoD** (2025-11-03T17:59:04+00:00)
+##### 0.2.7 : Test Plan
+- ⏳ Créer docs/TEST_PLAN.md
+- ⏳ Documenter stratégie TDD
+- ⏳ Documenter scénarios de test
+- ⏳ Documenter outils et méthodologie
 
-### Étape 2.1 : Dashboard ✅
-- ✅ React 19 + TypeScript configuré (Vite)
-- ✅ Structure `frontend/src/` créée (components, pages, contexts, services)
-- ✅ Composant Dashboard avec stats (total releases, jobs, user stats)
-- ✅ API endpoint `/api/dashboard/stats` créé et sécurisé (JWT)
-- ✅ Tests API : `tests/phase2/test_dashboard_api.py` (2 tests passent)
-- ✅ Tests frontend : `frontend/src/components/__tests__/Dashboard.test.tsx`
+##### 0.2.8 : Risks Register
+- ⏳ Créer docs/RISKS_REGISTER.md
+- ⏳ Identifier risques techniques
+- ⏳ Identifier risques fonctionnels
+- ⏳ Analyser avec SWOT
+- ⏳ Définir plans de mitigation
 
-### Étape 2.2 : Navigation ✅
-- ✅ Composant Navbar créé avec liens (Dashboard, Nouvelle Release, Liste, Rules, Users, Roles, Config)
-- ✅ React Router v7 configuré dans `App.tsx`
-- ✅ Navigation fonctionnelle avec état actif
-- ✅ Tests frontend : `frontend/src/components/__tests__/Navbar.test.tsx`
+##### 0.2.9 : Deployment Plan
+- ⏳ Créer docs/DEPLOYMENT_PLAN.md
+- ⏳ Documenter pré-requis
+- ⏳ Documenter étapes déploiement
+- ⏳ Documenter rollback
 
-### Étape 2.3 : Structure Pages ✅
-- ✅ PageLayout créé (titre + description + content)
-- ✅ Pages placeholders créées :
-  - Dashboard (fonctionnel avec stats)
-  - ReleasesList, NewRelease, Rules, Users, Roles, Config (placeholders)
-- ✅ Layout cohérent sur toutes pages
+**Critères de validation** :
+- Tous les fichiers de documentation créés
+- Documentation cohérente et complète
+- Liens entre documents fonctionnels
 
-### Étape 2.4 : Thème Jour/Nuit ✅
-- ✅ ThemeContext créé avec persistance localStorage
-- ✅ ThemeToggle composant créé (bouton avec icônes ☀️/🌙)
-- ✅ Styles dark mode avec variables CSS (`[data-theme="dark"]`)
-- ✅ Transition fluide entre thèmes
-- ✅ Tests frontend : `frontend/src/contexts/__tests__/ThemeContext.test.tsx`
+---
 
-**Critères de validation consolidés** :
-- ✅ Tests API : 2/2 passent (87% couverture)
-- ✅ Build frontend : Compile sans erreurs
-- ✅ Documentation à jour (DEVBOOK, TodoList)
-- ✅ **Definition of Done** : Tous critères satisfaits à 100%
+### Étape 0.3 : Configuration Environnement Développement
 
-## Phase 3 : Nouvelle Release Wizard (4 semaines) ✅
+**Statut** : ⏳ Non commencée  
+**Priorité** : Must Have  
+**Estimation** : 1 jour
 
-**Statut** : ✅ **TERMINÉE À 100% DoD** (2025-11-03T19:03:25+00:00)
+#### Sous-étapes
 
-### Étape 3.1 : Étapes 1-3 (Groupe, Type, Règle) ✅
-- ✅ Composants wizard créés (StepGroup, StepReleaseType, StepRules)
-- ✅ API wizard (`/api/wizard/draft`, `/api/wizard/rules`)
-- ✅ Validateurs Scene group et release type
-- ✅ Modèle Rule créé
-- ✅ Tests API : `tests/phase3/test_wizard_api.py` (4 tests passent)
-- ✅ Tests validators : `tests/phase3/test_wizard_validators.py` (3 tests passent)
+##### 0.3.1 : Environnement Python
+- ⏳ Créer venv Python 3.11+
+- ⏳ Installer dépendances (requirements.txt)
+- ⏳ Installer dépendances dev (requirements-dev.txt)
+- ⏳ Configurer pyproject.toml
 
-### Étape 3.2 : Étapes 4-5 (Fichier, Analyse) ✅
-- ✅ StepFileSelection créé (upload local/URL distante)
-- ✅ StepAnalysis créé avec barre progression
+##### 0.3.2 : Configuration IDE
+- ⏳ Configurer Cursor/VS Code
+- ⏳ Configurer extensions (Python, ESLint, etc.)
+- ⏳ Configurer formatage automatique
+- ⏳ Configurer linters
 
-### Étape 3.3 : Étapes 6-7 (Enrichissement, Templates) ✅
-- ✅ StepEnrichment créé (placeholder pour futures APIs)
-- ✅ StepTemplates créé (placeholder pour templates NFO)
+##### 0.3.3 : Docker (Optionnel)
+- ⏳ Créer Dockerfile
+- ⏳ Créer docker-compose.yml
+- ⏳ Configurer services (Flask, MySQL)
+- ⏳ Tester démarrage conteneurs
 
-### Étape 3.4 : Étapes 8-9 (Packaging, Destination) ✅
-- ✅ StepOptions créé (placeholder pour options packaging)
-- ✅ StepDestination créé (placeholder pour destinations)
+##### 0.3.4 : Git Configuration
+- ⏳ Configurer .gitignore
+- ⏳ Configurer .gitattributes
+- ⏳ Créer branche v2
+- ⏳ Configurer pre-commit hooks
 
-**Critères de validation consolidés** :
-- ✅ Tests API : 7/7 passent (91% couverture totale Phase 1+2+3)
-- ✅ Build frontend : Compile sans erreurs
-- ✅ Wizard 9 étapes : Tous composants créés et fonctionnels (9 composants Step)
-- ✅ Documentation à jour (DEVBOOK, TodoList)
-- ✅ **Definition of Done** : Tous critères satisfaits à 100%
+**Critères de validation** :
+- Environnement fonctionnel
+- Tests de base passent
+- Docker démarre (si configuré)
+
+---
+
+### Étape 0.4 : Setup TDD
+
+**Statut** : ⏳ Non commencée  
+**Priorité** : Must Have  
+**Estimation** : 1 jour
+
+#### Sous-étapes
+
+##### 0.4.1 : Installation Outils Tests
+- ⏳ Installer pytest
+- ⏳ Installer pytest-cov (coverage)
+- ⏳ Installer pytest-mock
+- ⏳ Installer pytest-flask
+
+##### 0.4.2 : Configuration Tests
+- ⏳ Créer structure tests/
+- ⏳ Créer conftest.py
+- ⏳ Configurer pytest.ini
+- ⏳ Configurer .coveragerc
+
+##### 0.4.3 : Fixtures de Base
+- ⏳ Créer fixtures DB
+- ⏳ Créer fixtures utilisateurs
+- ⏳ Créer fixtures Flask app
+- ⏳ Créer fixtures données de test
+
+##### 0.4.4 : Test Exemple TDD
+- ⏳ Écrire test échouant (Red)
+- ⏳ Implémenter code minimal (Green)
+- ⏳ Refactorer (Refactor)
+- ⏳ Vérifier coverage 100%
+
+**Critères de validation** :
+- Tests passent
+- Coverage configuré
+- Cycle TDD validé
+
+---
+
+### Étape 0.5 : Règles Cursor
+
+**Statut** : ⏳ Non commencée  
+**Priorité** : Must Have  
+**Estimation** : 2 heures
+
+#### Sous-étapes
+
+##### 0.5.1 : Règles Projet
+- ⏳ Créer .cursor/rules/project-v2.mdc
+- ⏳ Documenter architecture v2
+- ⏳ Documenter conventions de code
+- ⏳ Documenter structure projet
+
+##### 0.5.2 : Règles TDD
+- ⏳ Créer .cursor/rules/tdd-methodology.mdc
+- ⏳ Documenter cycle Red-Green-Refactor
+- ⏳ Documenter exigences couverture
+- ⏳ Documenter structure tests
+
+##### 0.5.3 : Règles Documentation
+- ⏳ Créer .cursor/rules/documentation-standards.mdc
+- ⏳ Documenter format PRD
+- ⏳ Documenter format DEVBOOK
+- ⏳ Documenter mise à jour fichiers
+
+##### 0.5.4 : Règles Tests
+- ⏳ Créer .cursor/rules/testing-requirements.mdc
+- ⏳ Documenter types tests
+- ⏳ Documenter structure tests
+- ⏳ Documenter mocks et fixtures
+
+**Critères de validation** :
+- Toutes les règles créées
+- Règles activées dans Cursor
+- Validation fonctionnement
+
+---
+
+## Phase 1 : Infrastructure Core (2 semaines)
+
+### Étape 1.1 : Setup Flask App Factory
+
+**Statut** : ⏳ Non commencée  
+**Priorité** : Must Have  
+**Estimation** : 1 jour  
+**Dépendances** : Phase 0
+
+#### Sous-étapes
+
+##### 1.1.1 : Structure Projet
+- ⏳ Créer web/ directory
+- ⏳ Créer web/app.py avec create_app()
+- ⏳ Créer web/config.py
+- ⏳ Créer web/__init__.py
+
+##### 1.1.2 : Configuration Environnement
+- ⏳ Créer .env.example
+- ⏳ Créer web/config.py (Config, DevConfig, ProdConfig)
+- ⏳ Configurer chargement .env (python-dotenv)
+- ⏳ Tester configuration par environnement
+
+##### 1.1.3 : Blueprints Structure
+- ⏳ Créer web/blueprints/ directory
+- ⏳ Créer structure blueprint (__init__.py)
+- ⏳ Créer blueprint exemple (health)
+- ⏳ Tester enregistrement blueprints
+
+**Tests TDD** :
+```python
+# Test création app
+def test_create_app_dev():
+    app = create_app('development')
+    assert app.config['DEBUG'] is True
+
+def test_create_app_prod():
+    app = create_app('production')
+    assert app.config['DEBUG'] is False
+```
+
+**Critères de validation** :
+- App se lance en dev/prod
+- Configuration chargée correctement
+- Blueprints enregistrés
+- Tests passent
+
+---
+
+### Étape 1.2 : Base de Données MySQL
+
+**Statut** : ⏳ Non commencée  
+**Priorité** : Must Have  
+**Estimation** : 2 jours  
+**Dépendances** : Étape 1.1
+
+#### Sous-étapes
+
+##### 1.2.1 : Configuration MySQL
+- ⏳ Installer Flask-SQLAlchemy
+- ⏳ Configurer connexion MySQL
+- ⏳ Créer script init_db.py
+- ⏳ Tester connexion DB
+
+##### 1.2.2 : Models de Base
+- ⏳ Créer web/models/ directory
+- ⏳ Créer web/models/__init__.py
+- ⏳ Créer User model (squelette)
+- ⏳ Créer Role model (squelette)
+- ⏳ Créer Group model (squelette)
+
+##### 1.2.3 : Flask-Migrate
+- ⏳ Installer Flask-Migrate
+- ⏳ Initialiser migrations/
+- ⏳ Créer première migration
+- ⏳ Tester upgrade/downgrade
+
+**Tests TDD** :
+```python
+def test_db_connection():
+    from web.app import create_app
+    app = create_app('testing')
+    with app.app_context():
+        db.create_all()
+        assert db.session.execute('SELECT 1').scalar() == 1
+```
+
+**Critères de validation** :
+- Connexion DB fonctionnelle
+- Models créés
+- Migrations fonctionnelles
+- Tests passent
+
+---
+
+### Étape 1.3 : Authentification JWT
+
+**Statut** : ⏳ Non commencée  
+**Priorité** : Must Have  
+**Estimation** : 3 jours  
+**Dépendances** : Étape 1.2
+
+#### Sous-étapes
+
+##### 1.3.1 : Setup Flask-JWT-Extended
+- ⏳ Installer Flask-JWT-Extended
+- ⏳ Configurer JWT dans app
+- ⏳ Configurer JWT_SECRET_KEY
+- ⏳ Configurer JWT_ACCESS_TOKEN_EXPIRES
+
+##### 1.3.2 : Endpoint Login
+- ⏳ Créer blueprint auth
+- ⏳ Créer endpoint POST /api/auth/login
+- ⏳ Implémenter validation credentials
+- ⏳ Générer tokens (access + refresh)
+
+##### 1.3.3 : Endpoint Refresh
+- ⏳ Créer endpoint POST /api/auth/refresh
+- ⏳ Implémenter refresh token logic
+- ⏳ Valider refresh token
+- ⏳ Générer nouveau access token
+
+##### 1.3.4 : Protection Routes
+- ⏳ Créer décorateur @jwt_required()
+- ⏳ Créer décorateur @admin_required()
+- ⏳ Tester protection endpoints
+- ⏳ Implémenter gestion erreurs JWT
+
+##### 1.3.5 : Révocation Tokens
+- ⏳ Créer modèle TokenBlacklist
+- ⏳ Implémenter logout (blacklist)
+- ⏳ Implémenter vérification blacklist
+- ⏳ Tester révocation
+
+**Tests TDD** :
+```python
+def test_login_success():
+    response = client.post('/api/auth/login', json={
+        'username': 'admin',
+        'password': 'password'
+    })
+    assert response.status_code == 200
+    assert 'access_token' in response.json
+
+def test_protected_route():
+    token = get_token()
+    response = client.get('/api/protected', 
+                         headers={'Authorization': f'Bearer {token}'})
+    assert response.status_code == 200
+```
+
+**Critères de validation** :
+- Login fonctionnel
+- Refresh token fonctionnel
+- Protection routes active
+- Révocation fonctionnelle
+- Tests passent
+
+---
+
+### Étape 1.4 : Modèles de Base
+
+**Statut** : ⏳ Non commencée  
+**Priorité** : Must Have  
+**Estimation** : 3 jours  
+**Dépendances** : Étape 1.2, Étape 1.3
+
+#### Sous-étapes
+
+##### 1.4.1 : Model User
+- ⏳ Créer User model complet
+- ⏳ Champs : id, username, note, password_hash, active, modify_at, created_at, created_by
+- ⏳ Relation : groups, roles
+- ⏳ Méthodes : hash_password, verify_password
+- ⏳ Tests CRUD
+
+##### 1.4.2 : Model Role
+- ⏳ Créer Role model complet
+- ⏳ Champs : id, name, description, created_at
+- ⏳ Relation : users, permissions
+- ⏳ Tests CRUD
+
+##### 1.4.3 : Model Permission
+- ⏳ Créer Permission model complet
+- ⏳ Champs : id, role_id, resource, action (READ/WRITE/MOD)
+- ⏳ Relation : role
+- ⏳ Tests CRUD
+
+##### 1.4.4 : Model Group
+- ⏳ Créer Group model complet
+- ⏳ Champs : id, name, description, created_at
+- ⏳ Relation : users
+- ⏳ Tests CRUD
+
+##### 1.4.5 : Migrations
+- ⏳ Générer migrations pour tous models
+- ⏳ Tester upgrade
+- ⏳ Tester downgrade
+- ⏳ Créer données seed (admin user)
+
+**Tests TDD** :
+```python
+def test_create_user():
+    user = User(username='test', note='Test user')
+    user.set_password('password')
+    db.session.add(user)
+    db.session.commit()
+    assert user.id is not None
+
+def test_user_password():
+    user = User(username='test', note='Test user')
+    user.set_password('password')
+    assert user.check_password('password') is True
+```
+
+**Critères de validation** :
+- Tous models créés avec relations
+- Migrations générées
+- Tests CRUD passent
+- Seed data créé
+
+---
+
+## Phase 2 : Interface Administration (3 semaines)
+
+### Étape 2.1 : Dashboard
+
+**Statut** : ⏳ Non commencée  
+**Priorité** : Must Have  
+**Estimation** : 3 jours  
+**Dépendances** : Phase 1
+
+#### Sous-étapes
+
+##### 2.1.1 : Setup React
+- ⏳ Installer React + dependencies
+- ⏳ Créer structure src/
+- ⏳ Configurer webpack/vite
+- ⏳ Configurer routing (React Router)
+
+##### 2.1.2 : Composant Dashboard
+- ⏳ Créer Dashboard component
+- ⏳ Afficher informations utilisateur connecté
+- ⏳ Afficher statistiques basiques
+- ⏳ Styling Bootstrap
+
+##### 2.1.3 : API Dashboard
+- ⏳ Créer endpoint GET /api/dashboard/stats
+- ⏳ Retourner stats (releases count, etc.)
+- ⏳ Sécuriser endpoint (JWT)
+- ⏳ Tests endpoint
 
 **Tests TDD** :
 ```python
@@ -276,471 +594,16 @@ def test_dashboard_stats():
 
 ---
 
-### Phase 4 : Liste des Releases ✅
-
-**Statut** : ✅ Terminée  
-**Date complétion** : 2025-11-03T19:05:55+00:00
-
-#### Étape 4.1 : API Releases ✅
-
-**Statut** : ✅ Terminée
-
-##### 4.1.1 : Endpoint GET /api/releases ✅
-- ✅ List releases avec pagination
-- ✅ Filtres : release_type, status, user_id
-- ✅ Protection JWT
-- ✅ Pagination (page, per_page, total, pages)
-
-##### 4.1.2 : Endpoint GET /api/releases/<id> ✅
-- ✅ Récupérer release par ID
-- ✅ Vérification permissions
-- ✅ Retour JSON avec release complète
-
-##### 4.1.3 : Endpoint DELETE /api/releases/<id> ✅
-- ✅ Supprimer release
-- ✅ Vérification permissions (propriétaire uniquement)
-- ✅ Confirmation suppression
-
-**Critères de validation** :
-- ✅ Tous endpoints fonctionnent
-- ✅ Tests passent (4/4)
-- ✅ Couverture 100% sur releases.py
-- ✅ Permissions vérifiées
-
-#### Étape 4.2 : Composant ReleasesList ✅
-
-**Statut** : ✅ Terminée
-
-##### 4.2.1 : Page ReleasesList ✅
-- ✅ Composant ReleasesList avec filtres
-- ✅ Filtres type et statut
-- ✅ Bouton réinitialiser filtres
-
-##### 4.2.2 : Composant ReleasesTable ✅
-- ✅ Tableau avec colonnes (ID, Type, Status, Date, Actions)
-- ✅ États loading/error gérés
-- ✅ Pagination frontend intégrée
-- ✅ Badges pour type et statut
-
-##### 4.2.3 : Service API releases.ts ✅
-- ✅ Méthode list() avec paramètres
-- ✅ Méthode get() pour récupérer release
-- ✅ Méthode delete() pour supprimer release
-
-**Critères de validation** :
-- ✅ Composants fonctionnent
-- ✅ Filtres appliqués correctement
-- ✅ Pagination fonctionnelle
-- ✅ Frontend compile sans erreurs
-
-#### Étape 4.3 : Tests Phase 4 ✅
-
-**Statut** : ✅ Terminée
-
-- ✅ Tests API : list_releases, list_releases_with_filters, get_release, delete_release
-- ✅ Tous tests passent (4/4)
-- ✅ Couverture 100% sur blueprint releases
-
-**Critères de validation** :
-- ✅ Tests passent à 100%
-- ✅ Couverture ≥90% (100%)
-- ✅ Documentation à jour
-
----
-
-### Phase 5 : Rules Management ✅
-
-**Statut** : ✅ Terminée  
-**Date complétion** : 2025-11-03T19:11:43+00:00
-
-#### Étape 5.1 : API Rules ✅
-
-**Statut** : ✅ Terminée
-
-##### 5.1.1 : Endpoints CRUD ✅
-- ✅ GET `/api/rules` - Liste avec filtres et pagination
-- ✅ GET `/api/rules/<id>` - Récupérer une règle
-- ✅ POST `/api/rules` - Créer une règle
-- ✅ PUT `/api/rules/<id>` - Mettre à jour une règle
-- ✅ DELETE `/api/rules/<id>` - Supprimer une règle
-
-##### 5.1.2 : Filtres et Pagination ✅
-- ✅ Filtres : scene, section, year
-- ✅ Pagination (page, per_page, total, pages)
-- ✅ Protection JWT sur tous les endpoints
-
-**Critères de validation** :
-- ✅ Tous endpoints fonctionnent
-- ✅ Tests passent (6/6)
-- ✅ Couverture 100% sur rules.py
-- ✅ Modèle Rule mis à jour (to_dict inclut content)
-
-#### Étape 5.2 : Composant Rules ✅
-
-**Statut** : ✅ Terminée
-
-##### 5.2.1 : Page Rules ✅
-- ✅ Composant Rules avec filtres (scene, section, year)
-- ✅ Bouton réinitialiser filtres
-
-##### 5.2.2 : Composant RulesTable ✅
-- ✅ Tableau avec colonnes (ID, Nom, Scene, Section, Année, Actions)
-- ✅ États loading/error gérés
-- ✅ Pagination frontend intégrée
-- ✅ Actions Edit/Delete intégrées
-
-##### 5.2.3 : Modal Prévisualisation ✅
-- ✅ Modal pour afficher le contenu complet de la règle
-- ✅ Format monospace avec scroll
-- ✅ Bouton fermer
-
-##### 5.2.4 : Service API rules.ts ✅
-- ✅ Méthode list() avec paramètres
-- ✅ Méthode get() pour récupérer règle
-- ✅ Méthode create() pour créer règle
-- ✅ Méthode update() pour mettre à jour règle
-- ✅ Méthode delete() pour supprimer règle
-
-**Critères de validation** :
-- ✅ Composants fonctionnent
-- ✅ Filtres appliqués correctement
-- ✅ Pagination fonctionnelle
-- ✅ Frontend compile sans erreurs
-
-#### Étape 5.3 : Tests Phase 5 ✅
-
-**Statut** : ✅ Terminée
-
-- ✅ Tests API : list_rules, list_rules_with_filters, get_rule, create_rule, update_rule, delete_rule
-- ✅ Tous tests passent (6/6)
-- ✅ Couverture 100% sur blueprint rules
-
-**Critères de validation** :
-- ✅ Tests passent à 100%
-- ✅ Couverture ≥90% (100%)
-- ✅ Documentation à jour
-
----
-
-### Phase 6 : Utilisateurs & Rôles ✅
-
-**Statut** : ✅ Terminée  
-**Date complétion** : 2025-11-03T19:17:36+00:00
-
-#### Étape 6.1 : API Users ✅
-
-**Statut** : ✅ Terminée
-
-##### 6.1.1 : Endpoints CRUD Users ✅
-- ✅ GET `/api/users` - Liste avec filtres et pagination
-- ✅ GET `/api/users/<id>` - Récupérer un utilisateur
-- ✅ POST `/api/users` - Créer un utilisateur
-- ✅ PUT `/api/users/<id>` - Mettre à jour un utilisateur
-- ✅ DELETE `/api/users/<id>` - Supprimer un utilisateur
-
-##### 6.1.2 : Filtres et Validation ✅
-- ✅ Filtres : username, email, role_id
-- ✅ Pagination (page, per_page, total, pages)
-- ✅ Protection JWT sur tous les endpoints
-- ✅ Validation unicité username/email
-- ✅ Modèle User mis à jour (to_dict inclut relations)
-
-**Critères de validation** :
-- ✅ Tous endpoints fonctionnent
-- ✅ Tests passent (4/4)
-- ✅ Couverture 100% sur users.py
-
-#### Étape 6.2 : API Roles ✅
-
-**Statut** : ✅ Terminée
-
-##### 6.2.1 : Endpoints CRUD Roles ✅
-- ✅ GET `/api/roles` - Liste avec filtres et pagination
-- ✅ GET `/api/roles/<id>` - Récupérer un rôle
-- ✅ POST `/api/roles` - Créer un rôle
-- ✅ PUT `/api/roles/<id>` - Mettre à jour un rôle
-- ✅ DELETE `/api/roles/<id>` - Supprimer un rôle
-
-##### 6.2.2 : Gestion Permissions ✅
-- ✅ Filtres : name
-- ✅ Pagination (page, per_page, total, pages)
-- ✅ Protection JWT sur tous les endpoints
-- ✅ Gestion permission_ids lors création/mise à jour
-- ✅ Modèle Role mis à jour (to_dict inclut permissions, users_count)
-
-**Critères de validation** :
-- ✅ Tous endpoints fonctionnent
-- ✅ Tests passent (4/4)
-- ✅ Couverture 100% sur roles.py
-
-#### Étape 6.3 : Composants Frontend ✅
-
-**Statut** : ✅ Terminée
-
-##### 6.3.1 : Page Users ✅
-- ✅ Composant Users avec filtres (username, email)
-- ✅ Composant UsersTable avec colonnes (ID, Username, Email, Rôles, Groupes, Statut, Actions)
-- ✅ Affichage badges pour rôles et groupes
-- ✅ Badge statut actif/inactif
-
-##### 6.3.2 : Page Roles ✅
-- ✅ Composant Roles avec filtres (name)
-- ✅ Composant RolesTable avec colonnes (ID, Nom, Description, Permissions, Utilisateurs, Actions)
-- ✅ Affichage badges pour permissions
-- ✅ Compteur utilisateurs par rôle
-
-##### 6.3.3 : Services API ✅
-- ✅ Service users.ts avec méthodes CRUD
-- ✅ Service roles.ts avec méthodes CRUD
-- ✅ Pagination intégrée
-
-**Critères de validation** :
-- ✅ Composants fonctionnent
-- ✅ Filtres appliqués correctement
-- ✅ Pagination fonctionnelle
-- ✅ Frontend compile sans erreurs
-
-#### Étape 6.4 : Tests Phase 6 ✅
-
-**Statut** : ✅ Terminée
-
-- ✅ Tests API Users : list_users, create_user, update_user, delete_user
-- ✅ Tests API Roles : list_roles, create_role, update_role, delete_role
-- ✅ Tous tests passent (8/8)
-- ✅ Couverture 100% sur blueprints users et roles
-
-**Critères de validation** :
-- ✅ Tests passent à 100%
-- ✅ Couverture ≥90% (100%)
-- ✅ Documentation à jour
-
----
-
-### Phase 7 : Configurations ✅
-
-**Statut** : ✅ Terminée  
-**Date complétion** : 2025-11-03T19:22:03+00:00
-
-#### Étape 7.1 : Modèle Configuration ✅
-
-**Statut** : ✅ Terminée
-
-- ✅ Modèle SQLAlchemy Configuration créé
-- ✅ Champs : id, key (unique), value, category, description, created_at, updated_at
-- ✅ Méthode to_dict() implémentée
-- ✅ Modèle exporté dans web/models/__init__.py
-
-**Critères de validation** :
-- ✅ Modèle créé et fonctionnel
-- ✅ Relations SQLAlchemy correctes
-
-#### Étape 7.2 : API Configurations ✅
-
-**Statut** : ✅ Terminée
-
-##### 7.2.1 : Endpoints CRUD ✅
-- ✅ GET `/api/config` - Liste avec filtres et pagination
-- ✅ GET `/api/config/<id>` - Récupérer une configuration
-- ✅ GET `/api/config/key/<key>` - Récupérer par clé
-- ✅ POST `/api/config` - Créer une configuration
-- ✅ PUT `/api/config/<id>` - Mettre à jour une configuration
-- ✅ DELETE `/api/config/<id>` - Supprimer une configuration
-
-##### 7.2.2 : Filtres et Validation ✅
-- ✅ Filtres : category, key
-- ✅ Pagination (page, per_page, total, pages)
-- ✅ Protection JWT sur tous les endpoints
-- ✅ Validation unicité key
-
-**Critères de validation** :
-- ✅ Tous endpoints fonctionnent
-- ✅ Tests passent (7/7)
-- ✅ Couverture 100% sur config.py
-
-#### Étape 7.3 : Composant Frontend ✅
-
-**Statut** : ✅ Terminée
-
-##### 7.3.1 : Page Config ✅
-- ✅ Composant Config avec filtres (category, key)
-- ✅ Composant ConfigurationsTable avec colonnes (ID, Key, Value, Category, Description, Actions)
-- ✅ Affichage code pour key et value
-- ✅ Badge pour category
-
-##### 7.3.2 : Service API ✅
-- ✅ Service configurations.ts avec méthodes CRUD
-- ✅ Méthode getByKey() pour récupérer par clé
-- ✅ Pagination intégrée
-
-**Critères de validation** :
-- ✅ Composants fonctionnent
-- ✅ Filtres appliqués correctement
-- ✅ Pagination fonctionnelle
-- ✅ Frontend compile sans erreurs
-
-#### Étape 7.4 : Tests Phase 7 ✅
-
-**Statut** : ✅ Terminée
-
-- ✅ Tests API : list_configurations, list_configurations_with_filters, get_configuration, get_configuration_by_key, create_configuration, update_configuration, delete_configuration
-- ✅ Tous tests passent (7/7)
-- ✅ Couverture 100% sur blueprint config
-
-**Critères de validation** :
-- ✅ Tests passent à 100%
-- ✅ Couverture ≥90% (100%)
-- ✅ Documentation à jour
-
----
-
-### Phase 8 : Tests & Optimisation ✅
-
-**Statut** : ✅ Terminée  
-**Date complétion** : 2025-11-03T19:24:09+00:00
-
-#### Étape 8.1 : Tests E2E Complets ✅
-
-**Statut** : ✅ Terminée
-
-- ✅ Placeholders E2E créés pour tous les flux utilisateur principaux
-- ✅ Tests préparés pour Playwright Browser MCP :
-  - test_login_flow
-  - test_dashboard_access
-  - test_wizard_complete_flow
-  - test_releases_list_and_filter
-  - test_rules_management
-- ✅ Structure E2E prête pour intégration Playwright MCP
-
-**Critères de validation** :
-- ✅ Structure E2E créée
-- ✅ Placeholders en place
-- ✅ Prêt pour intégration Playwright MCP
-
-#### Étape 8.2 : Optimisation Performance ✅
-
-**Statut** : ✅ Terminée
-
-- ✅ Dashboard queries optimisées (db.func.count au lieu de .count())
-- ✅ Tests performance créés :
-  - test_database_query_optimization
-  - test_pagination_performance
-  - test_response_time_acceptable (< 500ms)
-- ✅ Vérification indexes DB (placeholder)
-
-**Critères de validation** :
-- ✅ Queries optimisées
-- ✅ Tests performance passent
-- ✅ Temps de réponse acceptable
-
-#### Étape 8.3 : Accessibilité WCAG 2.2 AA ✅
-
-**Statut** : ✅ Terminée
-
-- ✅ Tests accessibilité créés (placeholders) :
-  - test_accessibility_aria_labels
-  - test_accessibility_keyboard_navigation
-  - test_accessibility_color_contrast
-  - test_accessibility_semantic_html
-  - test_accessibility_focus_visible
-- ✅ Structure prête pour intégration outils accessibilité
-
-**Critères de validation** :
-- ✅ Tests accessibilité créés
-- ✅ Structure prête pour intégration outils (axe-core, pa11y)
-
----
-
-### Phase 9 : Déploiement ✅
-
-**Statut** : ✅ Terminée  
-**Date complétion** : 2025-11-03T19:25:40+00:00
-
-#### Étape 9.1 : Configuration Production ✅
-
-**Statut** : ✅ Terminée
-
-- ✅ Configuration production améliorée (web/config_production.py)
-- ✅ Variables d'environnement sécurisées
-- ✅ Headers de sécurité configurés (SESSION_COOKIE_SECURE, HTTPONLY)
-- ✅ Pool de connexions DB optimisé
-- ✅ Template .env.example créé avec toutes les variables
-
-**Critères de validation** :
-- ✅ Configuration production sécurisée
-- ✅ Variables d'environnement documentées
-
-#### Étape 9.2 : Docker & Docker Compose ✅
-
-**Statut** : ✅ Terminée
-
-##### 9.2.1 : Dockerfiles ✅
-- ✅ Dockerfile backend (Python 3.12, Gunicorn, health check, non-root user)
-- ✅ Dockerfile frontend (Node 20, Nginx, multi-stage build, health check)
-
-##### 9.2.2 : Docker Compose ✅
-- ✅ docker-compose.yml avec services :
-  - MySQL 8.0 avec health check et volumes
-  - Backend Flask avec dépendances et volumes
-  - Frontend React avec Nginx
-  - Nginx reverse proxy
-- ✅ Réseau isolé et volumes persistants
-
-##### 9.2.3 : Configuration Nginx ✅
-- ✅ Nginx configuration reverse proxy
-- ✅ Headers de sécurité
-- ✅ Caching static assets
-- ✅ Proxy API vers backend
-
-**Critères de validation** :
-- ✅ Dockerfiles fonctionnels
-- ✅ Docker Compose configuration complète
-- ✅ Tous services configurés
-
-#### Étape 9.3 : CI/CD ✅
-
-**Statut** : ✅ Terminée
-
-##### 9.3.1 : GitHub Actions CI ✅
-- ✅ Workflow tests backend (Python 3.11, 3.12)
-- ✅ Workflow tests frontend
-- ✅ Build Docker images
-- ✅ Linting (black, isort, ESLint)
-- ✅ Coverage ≥90%
-
-##### 9.3.2 : Maintenance Workflow ✅
-- ✅ Audit documentation hebdomadaire
-- ✅ Vérification cohérence
-
-**Critères de validation** :
-- ✅ Workflows GitHub Actions créés
-- ✅ Tests automatisés configurés
-
-#### Étape 9.4 : Documentation Déploiement ✅
-
-**Statut** : ✅ Terminée
-
-- ✅ DEPLOYMENT.md créé avec guide complet
-- ✅ Instructions Docker Compose
-- ✅ Commandes utiles
-- ✅ Notes sécurité production
-- ✅ Monitoring et troubleshooting
-
-**Critères de validation** :
-- ✅ Documentation complète
-- ✅ Guide utilisable par équipe
-
----
-
 ## 📈 Métriques
 
 - **Total tâches** : 245 (estimation)
-- **Tâches terminées** : 27
-- **Tâches en cours** : 0
-- **Tâches restantes** : 218
-- **Progression** : ~11%
+- **Tâches terminées** : 5
+- **Tâches en cours** : 8
+- **Tâches restantes** : 232
+- **Progression** : ~2%
 
 ---
 
-**Dernière mise à jour** : 2025-11-03T19:25:40+00:00  
+**Dernière mise à jour** : 2025-11-01  
 **Prochaine mise à jour** : À chaque étape complétée
 

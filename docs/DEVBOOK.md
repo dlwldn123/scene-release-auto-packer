@@ -208,23 +208,19 @@ Ce DEVBOOK centralise le suivi de toutes les phases et étapes du projet v2, ave
 
 ### Phase 0 : Préparation ✅
 
-**Statut** : ✅ Terminée (2025-11-03T17:45:00+00:00)  
+**Statut** : ✅ **COMPLÉTÉE À 100%**  
 **Priorité MoSCoW** : Must Have  
 **Date début** : 2025-11-01  
-**Date fin** : 2025-11-03  
-**Couverture tests** : 100% ✅ (29/29 tests passent)
+**Date fin** : 2025-11-01  
+**Couverture tests** : 100% ✅
 
 #### Validation Phase 0
 
 - ✅ **Toutes étapes complétées à 100%**
-- ✅ **Tests Phase 0** : 29 tests, tous passent (100%)
-- ✅ **Backup v1/** : Créé dans backup/v1/ avec structure complète
-- ✅ **Documentation** : Complète et à jour (CDC, DEVBOOK, PRDs, etc.)
-- ✅ **Configuration** : pytest.ini, .coveragerc, pyproject.toml configurés
-- ✅ **Structure tests** : tests/phase0/ et tests/e2e/phase0/ créés
-- ✅ **Règles Cursor** : Toutes les règles chargées et validées
-- ✅ **Linting** : black, isort passent (0 erreurs)
-- ✅ **Definition of Done** : Tous critères satisfaits à 100%
+- ✅ **Tests Phase 0** : 33 tests, tous passent (100%)
+- ✅ **Couverture** : 100% (tests de validation)
+- ✅ **Documentation** : Complète et à jour
+- ✅ **Definition of Done** : Tous critères satisfaits
 
 #### Étapes
 
@@ -289,603 +285,180 @@ Ce DEVBOOK centralise le suivi de toutes les phases et étapes du projet v2, ave
 
 ---
 
-### Phase 1 : Infrastructure Core ✅
+### Phase 1 : Infrastructure Core ⏳
 
-**Statut** : ✅ Terminée (2025-11-03T17:48:21+00:00)  
+**Statut** : ⏳ Non commencée  
 **Priorité MoSCoW** : Must Have  
-**Date début** : 2025-11-03  
-**Date fin** : 2025-11-03  
-**Couverture tests** : 92% ✅ (21/21 tests passent)
+**Date début estimée** : 2025-11-08  
+**Date fin estimée** : 2025-11-22
 
 #### Étapes
 
-##### Étape 1.1 : Setup Flask App Factory ✅
+##### Étape 1.1 : Setup Flask App Factory
 - **Description** : Créer structure Flask avec application factory pattern
 - **Critères de validation** :
-  - ✅ web/app.py avec create_app()
-  - ✅ Configuration par environnement (.env via python-dotenv)
-  - ✅ Blueprints structure prête (health.py)
+  - web/app.py avec create_app()
+  - Configuration par environnement (.env)
+  - Blueprints structure prête
 - **Tests nécessaires** :
-  - ✅ Test création app (5 tests passent)
-  - ✅ Test configuration par environnement
-- **Livrables clés** :
-  - ✅ `web/app.py`, `web/config.py`, `web/blueprints/health.py`
-  - ✅ Tests (`tests/phase1/test_app_factory.py`)
-- **Statut** : ✅ **Terminée à 100%**
+  - Test création app
+  - Test configuration par environnement
+- **Statut** : ⏳ Non commencée
 
-##### Étape 1.2 : Base de Données MySQL ✅
+##### Étape 1.2 : Base de Données MySQL
 - **Description** : Setup MySQL avec Flask-SQLAlchemy
 - **Critères de validation** :
-  - ✅ Connexion DB fonctionnelle
-  - ✅ Models de base créés (User, Role, Permission, Group, TokenBlocklist)
-  - ✅ Flask-Migrate configuré
+  - Connexion DB fonctionnelle
+  - Models de base créés
+  - Flask-Migrate configuré
 - **Tests nécessaires** :
-  - ✅ Test connexion DB (4 tests passent)
-  - ✅ Test création tables
-- **Livrables clés** :
-  - ✅ `web/extensions.py` (SQLAlchemy + Migrate)
-  - ✅ `web/models/` avec tous modèles complets
-  - ✅ Tables d'association (user_roles, user_groups, role_permissions)
-  - ✅ Structure Alembic `migrations/` existante
-- **Statut** : ✅ **Terminée à 100%**
+  - Test connexion DB
+  - Test création tables
+- **Statut** : ⏳ Non commencée
 
-##### Étape 1.3 : Authentification JWT ✅
+##### Étape 1.3 : Authentification JWT
 - **Description** : Implémenter authentification JWT avec Flask-JWT-Extended
 - **Critères de validation** :
-  - ✅ Login fonctionnel
-  - ✅ Token refresh
-  - ✅ Révocation tokens (logout)
+  - Login fonctionnel
+  - Token refresh
+  - Révocation tokens
 - **Tests nécessaires** :
-  - ✅ Test login (6 tests passent)
-  - ✅ Test refresh token
-  - ✅ Test protection routes
-- **Livrables clés** :
-  - ✅ Blueprint `web/blueprints/auth.py` (login, refresh, logout, me)
-  - ✅ Callbacks de sécurité `web/security.py` (revocation, errors, lookup)
-  - ✅ Modèle `TokenBlocklist` implémenté
-  - ✅ Suite de tests JWT (`tests/phase1/test_authentication.py`)
-- **Statut** : ✅ **Terminée à 100%**
+  - Test login
+  - Test refresh token
+  - Test protection routes
+- **Statut** : ⏳ Non commencée
 
-##### Étape 1.4 : Modèles de Base ✅
+##### Étape 1.4 : Modèles de Base
 - **Description** : Créer modèles User, Role, Permission, Group
 - **Critères de validation** :
-  - ✅ Modèles créés avec relations (many-to-many)
-  - ✅ Migrations prêtes (structure migrations/ existante)
-  - ✅ Tests CRUD passent (6 tests passent)
+  - Modèles créés avec relations
+  - Migrations générées
+  - Tests CRUD passent
 - **Tests nécessaires** :
-  - ✅ Tests création/modification/suppression
-  - ✅ Tests relations (user-role, user-group, role-permission)
-- **Livrables clés** :
-  - ✅ Méthodes de hashing `User.set_password` / `User.check_password`
-  - ✅ Relations many-to-many (users↔roles, users↔groups, roles↔permissions)
-  - ✅ Tests ORM approfondis (`tests/phase1/test_models.py`)
-- **Statut** : ✅ **Terminée à 100%**
+  - Tests création/modification/suppression
+  - Tests relations
+- **Statut** : ⏳ Non commencée
 
 **Voir** : `docs/todolist.md` pour détails complets de toutes les sous-étapes.
 
 ---
 
-### Phase 2 : Interface Administration ✅
+### Phase 2 : Interface Administration ⏳
 
-**Statut** : ✅ Terminée (2025-11-03T17:59:04+00:00)  
+**Statut** : ⏳ Non commencée  
 **Priorité MoSCoW** : Must Have  
-**Date début** : 2025-11-03  
-**Date fin** : 2025-11-03  
-**Couverture tests** : 87% ✅ (2/2 tests backend passent)
-
-#### Validation Phase 2
-
-- ✅ **Toutes étapes complétées à 100%**
-- ✅ **API Dashboard** : Endpoint `/api/dashboard/stats` fonctionnel
-- ✅ **Composants React** : Dashboard, Navbar, PageLayout, ThemeToggle créés
-- ✅ **Pages** : Toutes pages placeholders créées (Dashboard, Releases, Rules, Users, Roles, Config)
-- ✅ **Thème Jour/Nuit** : ThemeContext avec persistance localStorage
-- ✅ **React Router** : Navigation configurée avec toutes routes
-- ✅ **Tests** : Tests API passent (2/2), tests frontend créés
-- ✅ **Build** : Frontend compile sans erreurs
-- ✅ **Definition of Done** : Tous critères satisfaits à 100%
+**Dépendances** : Phase 1  
+**Date début estimée** : 2025-11-22  
+**Date fin estimée** : 2025-12-13
 
 #### Étapes
 
-##### Étape 2.1 : Dashboard ✅
-- **Description** : Setup React, composant Dashboard, API endpoint
-- **Critères de validation** :
-  - ✅ React 19 + TypeScript configuré (Vite)
-  - ✅ Composant Dashboard créé avec stats
-  - ✅ API endpoint `/api/dashboard/stats` créé et sécurisé (JWT)
-- **Tests nécessaires** :
-  - ✅ Tests API Dashboard (2 tests passent)
-  - ✅ Tests composant Dashboard (frontend)
-- **Livrables clés** :
-  - ✅ `web/blueprints/dashboard.py` (endpoint stats)
-  - ✅ `frontend/src/pages/Dashboard.tsx` (composant React)
-  - ✅ `frontend/src/services/api.ts` (service API)
-- **Statut** : ✅ **Terminée à 100%**
-
-##### Étape 2.2 : Navigation ✅
-- **Description** : Composant Navbar, React Router configuré
-- **Critères de validation** :
-  - ✅ Composant Navbar créé avec liens
-  - ✅ React Router v7 configuré avec routes
-  - ✅ Navigation fonctionnelle
-- **Tests nécessaires** :
-  - ✅ Tests composant Navbar (frontend)
-- **Livrables clés** :
-  - ✅ `frontend/src/components/Navbar.tsx`
-  - ✅ `frontend/src/App.tsx` (routing configuré)
-- **Statut** : ✅ **Terminée à 100%**
-
-##### Étape 2.3 : Structure Pages ✅
-- **Description** : PageLayout, pages placeholders
-- **Critères de validation** :
-  - ✅ PageLayout créé (titre + description + content)
-  - ✅ Toutes pages placeholders créées
-- **Livrables clés** :
-  - ✅ `frontend/src/components/PageLayout.tsx`
-  - ✅ `frontend/src/pages/` (Dashboard, ReleasesList, NewRelease, Rules, Users, Roles, Config)
-- **Statut** : ✅ **Terminée à 100%**
-
-##### Étape 2.4 : Thème Jour/Nuit ✅
-- **Description** : ThemeContext, ThemeToggle, styles dark mode
-- **Critères de validation** :
-  - ✅ ThemeContext créé avec persistance localStorage
-  - ✅ ThemeToggle composant créé
-  - ✅ Styles dark mode avec variables CSS
-- **Tests nécessaires** :
-  - ✅ Tests ThemeContext (frontend)
-- **Livrables clés** :
-  - ✅ `frontend/src/contexts/ThemeContext.tsx`
-  - ✅ `frontend/src/components/ThemeToggle.tsx`
-  - ✅ `frontend/src/styles/index.css` (variables CSS thème)
-- **Statut** : ✅ **Terminée à 100%**
+##### Étape 2.1 : Dashboard
+##### Étape 2.2 : Navigation
+##### Étape 2.3 : Structure Pages
+##### Étape 2.4 : Thème Jour/Nuit
 
 **Voir** : `docs/todolist.md` pour détails complets.
 
 ---
 
-### Phase 3 : Nouvelle Release Wizard ✅
+### Phase 3 : Nouvelle Release Wizard ⏳
 
-**Statut** : ✅ Terminée (2025-11-03T19:03:25+00:00)  
+**Statut** : ⏳ Non commencée  
 **Priorité MoSCoW** : Must Have  
-**Date début** : 2025-11-03  
-**Date fin** : 2025-11-03  
-**Couverture tests** : 90% ✅ (7/7 tests passent)
+**Dépendances** : Phase 1, Phase 2  
+**Date début estimée** : 2025-12-13  
+**Date fin estimée** : 2026-01-10
 
-#### Validation Phase 3
+**⚠️ PRÉREQUIS CRITIQUE** : Avant de commencer Phase 3, la règle **[2022] eBOOK** de https://scenerules.org/ DOIT être analysée intégralement et le `RuleParserService` implémenté pour garantir packaging conforme 100%.
 
-- ✅ **Toutes étapes complétées à 100%**
-- ✅ **Wizard 9 étapes** : Tous composants créés (Steps 1-9)
-- ✅ **API Wizard** : Endpoints draft, rules créés
-- ✅ **Validation** : Validateurs Scene group, release type
-- ✅ **Navigation** : WizardContainer avec progression
-- ✅ **Tests** : Tests API passent (7/7), tests validators passent
-- ✅ **Build** : Frontend compile sans erreurs
-- ✅ **Definition of Done** : Tous critères satisfaits à 100%
+**Voir** : 
+- `docs/PREREQUISITES_PHASE3_WIZARD.md` pour prérequis obligatoires
+- `docs/SCENE_RULES_EBOOK_ANALYSIS.md` pour analyse complète des règles
+- `docs/PRDs/PRD-002-Nouvelle-Release.md` pour détails fonctionnels
 
 #### Étapes
 
-##### Étape 3.1 : Étapes 1-3 (Groupe, Type, Règle) ✅
-- **Description** : Composants wizard étapes 1-3, API endpoints
-- **Critères de validation** :
-  - ✅ StepGroup créé avec validation Scene group format
-  - ✅ StepReleaseType créé (EBOOK, TV, DOCS, AUDIOBOOK, GAME)
-  - ✅ StepRules créé avec liste règles depuis API
-  - ✅ API `/api/wizard/draft` créé (POST/PUT/GET)
-  - ✅ API `/api/wizard/rules` créé (liste règles)
-- **Tests nécessaires** :
-  - ✅ Tests API wizard (4 tests passent)
-  - ✅ Tests validators (3 tests passent)
-- **Livrables clés** :
-  - ✅ `web/blueprints/wizard.py` (endpoints draft, rules)
-  - ✅ `web/utils/validators.py` (validate_scene_group, validate_release_type)
-  - ✅ `web/models/rule.py` (modèle Rule)
-  - ✅ `frontend/src/components/wizard/StepGroup.tsx`
-  - ✅ `frontend/src/components/wizard/StepReleaseType.tsx`
-  - ✅ `frontend/src/components/wizard/StepRules.tsx`
-- **Statut** : ✅ **Terminée à 100%**
-
-##### Étape 3.2 : Étapes 4-5 (Fichier, Analyse) ✅
-- **Description** : Upload fichier, analyse métadonnées
-- **Critères de validation** :
-  - ✅ StepFileSelection créé (local/remote)
-  - ✅ StepAnalysis créé avec barre progression
-  - ✅ Composants UI fonctionnels
-- **Livrables clés** :
-  - ✅ `frontend/src/components/wizard/StepFileSelection.tsx`
-  - ✅ `frontend/src/components/wizard/StepAnalysis.tsx`
-- **Statut** : ✅ **Terminée à 100%**
-
-##### Étape 3.3 : Étapes 6-7 (Enrichissement, Templates) ✅
-- **Description** : Enrichissement métadonnées, templates NFO
-- **Critères de validation** :
-  - ✅ StepEnrichment créé (placeholder pour futures APIs)
-  - ✅ StepTemplates créé (placeholder pour templates NFO)
-- **Livrables clés** :
-  - ✅ `frontend/src/components/wizard/StepEnrichment.tsx`
-  - ✅ `frontend/src/components/wizard/StepTemplates.tsx`
-- **Statut** : ✅ **Terminée à 100%**
-
-##### Étape 3.4 : Étapes 8-9 (Packaging, Destination) ✅
-- **Description** : Options packaging, destination upload
-- **Critères de validation** :
-  - ✅ StepOptions créé (placeholder pour options)
-  - ✅ StepDestination créé (placeholder pour destinations)
-- **Livrables clés** :
-  - ✅ `frontend/src/components/wizard/StepOptions.tsx`
-  - ✅ `frontend/src/components/wizard/StepDestination.tsx`
-- **Statut** : ✅ **Terminée à 100%**
-
-**Note** : Les fonctionnalités complètes (upload réel, analyse métadonnées, packaging) seront implémentées dans les phases suivantes. La structure du wizard est complète et fonctionnelle.
+##### Étape 3.1 : Étapes 1-3 (Groupe, Type, Règle)
+##### Étape 3.2 : Étapes 4-5 (Fichier, Analyse)
+##### Étape 3.3 : Étapes 6-7 (Enrichissement, Templates)
+##### Étape 3.4 : Étapes 8-9 (Packaging, Destination)
 
 ---
 
-### Phase 4 : Liste des Releases ✅
+### Phase 4 : Liste des Releases ⏳
 
-**Statut** : ✅ Terminée  
+**Statut** : ⏳ Non commencée  
 **Priorité MoSCoW** : Must Have  
 **Dépendances** : Phase 3  
-**Date début** : 2025-11-03T19:05:00+00:00  
-**Date fin** : 2025-11-03T19:05:55+00:00
+**Date début estimée** : 2026-01-10  
+**Date fin estimée** : 2026-01-24
 
 **Voir** : `docs/PRDs/PRD-003-Liste-Releases.md` pour détails.
 
-#### Résultats Phase 4
-
-**Tests** : ✅ 4/4 passent (tests/phase4/test_releases_api.py)  
-**Couverture** : ✅ 100% sur web/blueprints/releases.py  
-**Frontend** : ✅ Build réussi, composants ReleasesTable et ReleasesList implémentés  
-**Linting** : ✅ 0 erreurs (ruff, black)
-
-#### Étapes Complétées
-
-##### Étape 4.1 : API Releases ✅
-- ✅ Endpoint GET `/api/releases` avec filtres (release_type, status, user_id)
-- ✅ Endpoint GET `/api/releases/<id>` pour récupérer une release
-- ✅ Endpoint DELETE `/api/releases/<id>` pour supprimer une release
-- ✅ Pagination (page, per_page, total, pages)
-- ✅ Protection JWT sur tous les endpoints
-- ✅ Vérification permissions (utilisateur peut voir/supprimer ses propres releases)
-
-##### Étape 4.2 : Composant ReleasesList ✅
-- ✅ Page ReleasesList avec filtres (type, statut)
-- ✅ Composant ReleasesTable avec affichage tableau
-- ✅ Pagination frontend intégrée
-- ✅ États loading/error gérés
-- ✅ Service API releases.ts créé
-
-##### Étape 4.3 : Tests Phase 4 ✅
-- ✅ Tests API : list_releases, list_releases_with_filters, get_release, delete_release
-- ✅ Tous tests passent (4/4)
-- ✅ Couverture 100% sur blueprint releases
-
-#### Validation DoD Phase 4
-
-- ✅ Code implémenté à 100%
-- ✅ Tests à 100% (4/4 passent)
-- ✅ Couverture ≥90% (100% sur releases.py)
-- ✅ Documentation à jour (DEVBOOK, todolist)
-- ✅ Linters passent (ruff, black)
-- ✅ Frontend compile sans erreurs
-
 ---
 
-### Phase 5 : Rules Management ✅
+### Phase 5 : Rules Management ⏳
 
-**Statut** : ✅ Terminée  
+**Statut** : ⏳ Non commencée  
 **Priorité MoSCoW** : Must Have  
 **Dépendances** : Phase 1  
-**Date début** : 2025-11-03T19:11:00+00:00  
-**Date fin** : 2025-11-03T19:11:43+00:00
+**Date début estimée** : 2026-01-24  
+**Date fin estimée** : 2026-02-14
 
 **Voir** : `docs/PRDs/PRD-004-Rules.md` pour détails.
 
-#### Résultats Phase 5
-
-**Tests** : ✅ 6/6 passent (tests/phase5/test_rules_api.py)  
-**Couverture** : ✅ 100% sur web/blueprints/rules.py  
-**Frontend** : ✅ Build réussi, composants RulesTable et Rules implémentés  
-**Linting** : ✅ 0 erreurs (black)
-
-#### Étapes Complétées
-
-##### Étape 5.1 : API Rules ✅
-- ✅ Endpoint GET `/api/rules` avec filtres (scene, section, year)
-- ✅ Endpoint GET `/api/rules/<id>` pour récupérer une règle
-- ✅ Endpoint POST `/api/rules` pour créer une règle
-- ✅ Endpoint PUT `/api/rules/<id>` pour mettre à jour une règle
-- ✅ Endpoint DELETE `/api/rules/<id>` pour supprimer une règle
-- ✅ Pagination (page, per_page, total, pages)
-- ✅ Protection JWT sur tous les endpoints
-
-##### Étape 5.2 : Composant Rules ✅
-- ✅ Page Rules avec filtres (scene, section, year)
-- ✅ Composant RulesTable avec affichage tableau
-- ✅ Modal de prévisualisation du contenu de la règle
-- ✅ Actions Edit/Delete intégrées
-- ✅ Pagination frontend intégrée
-- ✅ États loading/error gérés
-- ✅ Service API rules.ts créé
-
-##### Étape 5.3 : Tests Phase 5 ✅
-- ✅ Tests API : list_rules, list_rules_with_filters, get_rule, create_rule, update_rule, delete_rule
-- ✅ Tous tests passent (6/6)
-- ✅ Couverture 100% sur blueprint rules
-- ✅ Modèle Rule mis à jour (to_dict inclut content et updated_at)
-
-#### Validation DoD Phase 5
-
-- ✅ Code implémenté à 100%
-- ✅ Tests à 100% (6/6 passent)
-- ✅ Couverture ≥90% (100% sur rules.py)
-- ✅ Documentation à jour (DEVBOOK, todolist)
-- ✅ Linters passent (black)
-- ✅ Frontend compile sans erreurs
-
-**Note** : L'intégration complète avec scenerules.org (import/sync automatique) sera implémentée dans une phase ultérieure. La structure CRUD de base est complète et fonctionnelle.
-
 ---
 
-### Phase 6 : Utilisateurs & Rôles ✅
+### Phase 6 : Utilisateurs & Rôles ⏳
 
-**Statut** : ✅ Terminée  
+**Statut** : ⏳ Non commencée  
 **Priorité MoSCoW** : Must Have  
 **Dépendances** : Phase 1  
-**Date début** : 2025-11-03T19:17:00+00:00  
-**Date fin** : 2025-11-03T19:17:36+00:00
+**Date début estimée** : 2026-02-14  
+**Date fin estimée** : 2026-02-28
 
 **Voir** : `docs/PRDs/PRD-005-Utilisateurs.md` et `docs/PRDs/PRD-006-Roles.md` pour détails.
 
-#### Résultats Phase 6
-
-**Tests** : ✅ 8/8 passent (tests/phase6/test_users_api.py, test_roles_api.py)  
-**Couverture** : ✅ 100% sur web/blueprints/users.py et web/blueprints/roles.py  
-**Frontend** : ✅ Build réussi, composants UsersTable, RolesTable, pages Users et Roles implémentés  
-**Linting** : ✅ 0 erreurs (black)
-
-#### Étapes Complétées
-
-##### Étape 6.1 : API Users ✅
-- ✅ Endpoint GET `/api/users` avec filtres (username, email, role_id)
-- ✅ Endpoint GET `/api/users/<id>` pour récupérer un utilisateur
-- ✅ Endpoint POST `/api/users` pour créer un utilisateur
-- ✅ Endpoint PUT `/api/users/<id>` pour mettre à jour un utilisateur
-- ✅ Endpoint DELETE `/api/users/<id>` pour supprimer un utilisateur
-- ✅ Pagination (page, per_page, total, pages)
-- ✅ Protection JWT sur tous les endpoints
-- ✅ Validation unicité username/email
-- ✅ Modèle User mis à jour (to_dict inclut roles, groups, note, modify_at)
-
-##### Étape 6.2 : API Roles ✅
-- ✅ Endpoint GET `/api/roles` avec filtres (name)
-- ✅ Endpoint GET `/api/roles/<id>` pour récupérer un rôle
-- ✅ Endpoint POST `/api/roles` pour créer un rôle
-- ✅ Endpoint PUT `/api/roles/<id>` pour mettre à jour un rôle
-- ✅ Endpoint DELETE `/api/roles/<id>` pour supprimer un rôle
-- ✅ Pagination (page, per_page, total, pages)
-- ✅ Protection JWT sur tous les endpoints
-- ✅ Gestion permissions (permission_ids)
-- ✅ Modèle Role mis à jour (to_dict inclut permissions, users_count)
-
-##### Étape 6.3 : Composants Frontend ✅
-- ✅ Page Users avec filtres (username, email)
-- ✅ Composant UsersTable avec affichage tableau (rôles, groupes, statut)
-- ✅ Page Roles avec filtres (name)
-- ✅ Composant RolesTable avec affichage tableau (permissions, users_count)
-- ✅ Pagination frontend intégrée
-- ✅ Actions Edit/Delete intégrées
-- ✅ États loading/error gérés
-- ✅ Services API users.ts et roles.ts créés
-
-##### Étape 6.4 : Tests Phase 6 ✅
-- ✅ Tests API Users : list_users, create_user, update_user, delete_user
-- ✅ Tests API Roles : list_roles, create_role, update_role, delete_role
-- ✅ Tous tests passent (8/8)
-- ✅ Couverture 100% sur blueprints users et roles
-
-#### Validation DoD Phase 6
-
-- ✅ Code implémenté à 100%
-- ✅ Tests à 100% (8/8 passent)
-- ✅ Couverture ≥90% (100% sur users.py et roles.py)
-- ✅ Documentation à jour (DEVBOOK, todolist)
-- ✅ Linters passent (black)
-- ✅ Frontend compile sans erreurs
-
-**Note** : La gestion complète des permissions granulaires (READ/WRITE/MOD par option) et l'affectation de groupes seront complétées dans une phase ultérieure. La structure CRUD de base est complète et fonctionnelle.
-
 ---
 
-### Phase 7 : Configurations ✅
+### Phase 7 : Configurations ⏳
 
-**Statut** : ✅ Terminée  
+**Statut** : ⏳ Non commencée  
 **Priorité MoSCoW** : Must Have  
 **Dépendances** : Phase 1  
-**Date début** : 2025-11-03T19:22:00+00:00  
-**Date fin** : 2025-11-03T19:22:03+00:00
+**Date début estimée** : 2026-02-28  
+**Date fin estimée** : 2026-03-14
 
 **Voir** : `docs/PRDs/PRD-007-Configurations.md` pour détails.
 
-#### Résultats Phase 7
-
-**Tests** : ✅ 7/7 passent (tests/phase7/test_configurations_api.py)  
-**Couverture** : ✅ 100% sur web/blueprints/config.py  
-**Frontend** : ✅ Build réussi, composant ConfigurationsTable et page Config implémentés  
-**Linting** : ✅ 0 erreurs (black)
-
-#### Étapes Complétées
-
-##### Étape 7.1 : Modèle Configuration ✅
-- ✅ Modèle SQLAlchemy Configuration créé
-- ✅ Champs : id, key (unique), value, category, description, created_at, updated_at
-- ✅ Méthode to_dict() implémentée
-- ✅ Modèle exporté dans web/models/__init__.py
-
-##### Étape 7.2 : API Configurations ✅
-- ✅ Endpoint GET `/api/config` avec filtres (category, key)
-- ✅ Endpoint GET `/api/config/<id>` pour récupérer une configuration
-- ✅ Endpoint GET `/api/config/key/<key>` pour récupérer par clé
-- ✅ Endpoint POST `/api/config` pour créer une configuration
-- ✅ Endpoint PUT `/api/config/<id>` pour mettre à jour une configuration
-- ✅ Endpoint DELETE `/api/config/<id>` pour supprimer une configuration
-- ✅ Pagination (page, per_page, total, pages)
-- ✅ Protection JWT sur tous les endpoints
-- ✅ Validation unicité key
-
-##### Étape 7.3 : Composant Frontend ✅
-- ✅ Page Config avec filtres (category, key)
-- ✅ Composant ConfigurationsTable avec affichage tableau
-- ✅ Pagination frontend intégrée
-- ✅ Actions Edit/Delete intégrées
-- ✅ États loading/error gérés
-- ✅ Service API configurations.ts créé
-
-##### Étape 7.4 : Tests Phase 7 ✅
-- ✅ Tests API : list_configurations, list_configurations_with_filters, get_configuration, get_configuration_by_key, create_configuration, update_configuration, delete_configuration
-- ✅ Tous tests passent (7/7)
-- ✅ Couverture 100% sur blueprint config
-
-#### Validation DoD Phase 7
-
-- ✅ Code implémenté à 100%
-- ✅ Tests à 100% (7/7 passent)
-- ✅ Couverture ≥90% (100% sur config.py)
-- ✅ Documentation à jour (DEVBOOK, todolist)
-- ✅ Linters passent (black)
-- ✅ Frontend compile sans erreurs
-
-**Note** : La gestion complète des APIs externes (chiffrement credentials, tests connexion) et des destinations FTP/SSH sera implémentée dans une phase ultérieure. La structure CRUD de base est complète et fonctionnelle.
-
 ---
 
-### Phase 8 : Tests & Optimisation ✅
+### Phase 8 : Tests & Optimisation ⏳
 
-**Statut** : ✅ Terminée  
+**Statut** : ⏳ Non commencée  
 **Priorité MoSCoW** : Must Have  
 **Dépendances** : Toutes phases précédentes  
-**Date début** : 2025-11-03T19:22:10+00:00  
-**Date fin** : 2025-11-03T19:24:09+00:00
+**Date début estimée** : 2026-03-14  
+**Date fin estimée** : 2026-03-28
 
-#### Résultats Phase 8
+#### Étapes
 
-**Tests** : ✅ 4/4 passent (tests/phase8/test_performance.py, test_accessibility.py)  
-**E2E Tests** : ✅ Placeholders créés (tests/e2e/phase8/test_e2e_flows.py)  
-**Optimisations** : ✅ Dashboard queries optimisées (db.func.count au lieu de .count())  
-**Linting** : ✅ 0 erreurs (black)
-
-#### Étapes Complétées
-
-##### Étape 8.1 : Tests E2E Complets ✅
-- ✅ Placeholders E2E créés pour tous les flux utilisateur principaux
-- ✅ Tests préparés pour Playwright Browser MCP :
-  - test_login_flow
-  - test_dashboard_access
-  - test_wizard_complete_flow
-  - test_releases_list_and_filter
-  - test_rules_management
-- ✅ Structure E2E prête pour intégration Playwright MCP
-
-##### Étape 8.2 : Optimisation Performance ✅
-- ✅ Dashboard queries optimisées (utilisation de db.func.count pour éviter N+1)
-- ✅ Tests performance créés :
-  - test_database_query_optimization
-  - test_pagination_performance
-  - test_response_time_acceptable (< 500ms)
-- ✅ Vérification indexes DB (placeholder)
-
-##### Étape 8.3 : Accessibilité WCAG 2.2 AA ✅
-- ✅ Tests accessibilité créés (placeholders) :
-  - test_accessibility_aria_labels
-  - test_accessibility_keyboard_navigation
-  - test_accessibility_color_contrast
-  - test_accessibility_semantic_html
-  - test_accessibility_focus_visible
-- ✅ Structure prête pour intégration outils accessibilité (axe-core, pa11y)
-
-#### Validation DoD Phase 8
-
-- ✅ Code implémenté à 100%
-- ✅ Tests à 100% (4/4 passent)
-- ✅ Optimisations performance appliquées
-- ✅ Structure E2E et accessibilité prête
-- ✅ Documentation à jour (DEVBOOK, todolist)
-- ✅ Linters passent (black)
-
-**Note** : Les tests E2E complets avec Playwright Browser MCP et les tests d'accessibilité automatisés nécessitent l'intégration d'outils externes. La structure est prête et les placeholders sont en place pour une intégration future.
+##### Étape 8.1 : Tests E2E Complets
+##### Étape 8.2 : Optimisation Performance
+##### Étape 8.3 : Accessibilité WCAG 2.2 AA
 
 ---
 
-### Phase 9 : Déploiement ✅
+### Phase 9 : Déploiement ⏳
 
-**Statut** : ✅ Terminée  
+**Statut** : ⏳ Non commencée  
 **Priorité MoSCoW** : Must Have  
 **Dépendances** : Phase 8  
-**Date début** : 2025-11-03T19:24:15+00:00  
-**Date fin** : 2025-11-03T19:25:40+00:00
+**Date début estimée** : 2026-03-28  
+**Date fin estimée** : 2026-04-04
 
-**Voir** : `docs/DEPLOYMENT_PLAN.md` et `DEPLOYMENT.md` pour détails.
-
-#### Résultats Phase 9
-
-**Docker** : ✅ Dockerfiles créés (backend, frontend)  
-**Docker Compose** : ✅ Configuration complète avec MySQL, backend, frontend, nginx  
-**CI/CD** : ✅ GitHub Actions workflows créés (tests, lint, Docker build)  
-**Documentation** : ✅ Guide déploiement créé (DEPLOYMENT.md)  
-**Configuration** : ✅ .env.example créé avec toutes les variables nécessaires
-
-#### Étapes Complétées
-
-##### Étape 9.1 : Configuration Production ✅
-- ✅ Configuration production améliorée (web/config_production.py)
-- ✅ Variables d'environnement sécurisées
-- ✅ Headers de sécurité configurés
-- ✅ Pool de connexions DB optimisé
-- ✅ Template .env.example créé
-
-##### Étape 9.2 : Docker & Docker Compose ✅
-- ✅ Dockerfile backend créé (Python 3.12, Gunicorn, health check)
-- ✅ Dockerfile frontend créé (Node 20, Nginx, multi-stage build)
-- ✅ docker-compose.yml créé avec :
-  - MySQL 8.0 avec health check
-  - Backend Flask avec dépendances
-  - Frontend React avec Nginx
-  - Nginx reverse proxy
-  - Volumes pour données persistantes
-  - Réseau isolé
-- ✅ Nginx configuration créée (reverse proxy, sécurité, caching)
-
-##### Étape 9.3 : CI/CD ✅
-- ✅ Workflow GitHub Actions CI créé (.github/workflows/ci.yml)
-  - Tests backend (Python 3.11, 3.12)
-  - Tests frontend
-  - Build Docker images
-  - Linting (black, isort, ESLint)
-  - Coverage ≥90%
-- ✅ Workflow Maintenance créé (.github/workflows/maintenance-check.yml)
-  - Audit documentation hebdomadaire
-  - Vérification cohérence
-
-##### Étape 9.4 : Documentation Déploiement ✅
-- ✅ DEPLOYMENT.md créé avec guide complet
-- ✅ Instructions Docker Compose
-- ✅ Commandes utiles
-- ✅ Notes sécurité production
-- ✅ Monitoring et troubleshooting
-
-#### Validation DoD Phase 9
-
-- ✅ Code implémenté à 100%
-- ✅ Dockerfiles fonctionnels
-- ✅ Docker Compose configuration complète
-- ✅ CI/CD workflows créés
-- ✅ Documentation à jour (DEVBOOK, todolist, DEPLOYMENT.md)
-- ✅ Variables d'environnement documentées (.env.example)
-
-**Note** : Pour un déploiement réel, il faudra :
-- Configurer les secrets dans GitHub Secrets (pour CI/CD)
-- Configurer un registre Docker (Docker Hub, GitHub Container Registry)
-- Configurer un serveur de production avec domain et SSL
-- Configurer backups automatiques de la base de données
-- Configurer monitoring (Prometheus, Grafana, etc.)
+**Voir** : `docs/DEPLOYMENT_PLAN.md` pour détails.
 
 ---
 
