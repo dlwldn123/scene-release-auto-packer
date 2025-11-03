@@ -208,10 +208,10 @@ Ce DEVBOOK centralise le suivi de toutes les phases et étapes du projet v2, ave
 
 ### Phase 0 : Préparation ✅
 
-**Statut** : ✅ **COMPLÉTÉE À 100%**  
+**Statut** : ✅ Terminée (2025-11-03T16:14:04+00:00)  
 **Priorité MoSCoW** : Must Have  
 **Date début** : 2025-11-01  
-**Date fin** : 2025-11-01  
+**Date fin** : 2025-11-03  
 **Couverture tests** : 100% ✅
 
 #### Validation Phase 0
@@ -285,12 +285,13 @@ Ce DEVBOOK centralise le suivi de toutes les phases et étapes du projet v2, ave
 
 ---
 
-### Phase 1 : Infrastructure Core ⏳
+### Phase 1 : Infrastructure Core ✅
 
-**Statut** : ⏳ Non commencée  
+**Statut** : ✅ Terminée (2025-11-03T16:55:16+00:00)  
 **Priorité MoSCoW** : Must Have  
-**Date début estimée** : 2025-11-08  
-**Date fin estimée** : 2025-11-22
+**Date début** : 2025-11-03  
+**Date fin** : 2025-11-03  
+**Couverture tests** : 98% ✅
 
 #### Étapes
 
@@ -303,7 +304,10 @@ Ce DEVBOOK centralise le suivi de toutes les phases et étapes du projet v2, ave
 - **Tests nécessaires** :
   - Test création app
   - Test configuration par environnement
-- **Statut** : ⏳ Non commencée
+- **Livrables clés** :
+  - `web/app.py`, `web/config.py`, `web/blueprints/health.py`
+  - Fixture tests dédiée (`tests/phase1/test_app_factory.py`)
+- **Statut** : ✅ Terminée
 
 ##### Étape 1.2 : Base de Données MySQL
 - **Description** : Setup MySQL avec Flask-SQLAlchemy
@@ -314,7 +318,12 @@ Ce DEVBOOK centralise le suivi de toutes les phases et étapes du projet v2, ave
 - **Tests nécessaires** :
   - Test connexion DB
   - Test création tables
-- **Statut** : ⏳ Non commencée
+- **Livrables clés** :
+  - `web/extensions.py` (SQLAlchemy + Migrate)
+  - `web/models/__init__.py` (squelettes complets)
+  - Structure Alembic `migrations/` + première migration `0001_initial_schema`
+  - Script `scripts/init_db.py`
+- **Statut** : ✅ Terminée
 
 ##### Étape 1.3 : Authentification JWT
 - **Description** : Implémenter authentification JWT avec Flask-JWT-Extended
@@ -326,7 +335,12 @@ Ce DEVBOOK centralise le suivi de toutes les phases et étapes du projet v2, ave
   - Test login
   - Test refresh token
   - Test protection routes
-- **Statut** : ⏳ Non commencée
+- **Livrables clés** :
+  - Blueprint `web/blueprints/auth.py`
+  - Callbacks de sécurité `web/security.py`
+  - Modèle `TokenBlocklist`
+  - Suite de tests JWT (`tests/phase1/test_authentication.py`)
+- **Statut** : ✅ Terminée
 
 ##### Étape 1.4 : Modèles de Base
 - **Description** : Créer modèles User, Role, Permission, Group
@@ -337,7 +351,11 @@ Ce DEVBOOK centralise le suivi de toutes les phases et étapes du projet v2, ave
 - **Tests nécessaires** :
   - Tests création/modification/suppression
   - Tests relations
-- **Statut** : ⏳ Non commencée
+- **Livrables clés** :
+  - Méthodes de hashing `User.set_password` / `User.check_password`
+  - Relations many-to-many (users↔roles, users↔groups)
+  - Tests ORM approfondis (`tests/phase1/test_models.py`)
+- **Statut** : ✅ Terminée
 
 **Voir** : `docs/todolist.md` pour détails complets de toutes les sous-étapes.
 

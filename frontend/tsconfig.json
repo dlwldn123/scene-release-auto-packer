@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.node.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "lib": ["DOM", "ES2023"],
+    "types": ["vite/client", "@testing-library/jest-dom"]
+  },
+  "include": ["src"]
+}

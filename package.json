@@ -1,0 +1,38 @@
+{
+  "name": "ebook-scene-packer-v2",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "lint": "npm run lint:py && npm run lint:js",
+    "lint:py": "python3 -m ruff check src tests",
+    "lint:js": "eslint --no-error-on-unmatched-pattern \"frontend/src/**/*.{ts,tsx,js,jsx}\"",
+    "format": "npm run format:py && npm run format:js",
+    "format:py": "python3 -m black src tests && python3 -m isort src tests",
+    "format:js": "prettier --check \"frontend/src/**/*.{ts,tsx,js,jsx,json,md}\" || test $? -eq 2",
+    "test": "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python3 -m pytest -p pytest_cov",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test:frontend": "vitest run"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.27.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^5.1.0",
+    "eslint": "^9.39.0",
+    "globals": "^16.5.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.8",
+    "vitest": "^2.1.4"
+  }
+}
