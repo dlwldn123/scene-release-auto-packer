@@ -422,16 +422,110 @@ def test_dashboard_stats():
 
 ---
 
-## 📈 Métriques
+### Phase 6 : Utilisateurs & Rôles ✅
 
-- **Total tâches** : 245 (estimation)
-- **Tâches terminées** : 12
-- **Tâches en cours** : 0
-- **Tâches restantes** : 233
-- **Progression** : ~5%
+**Statut** : ✅ Terminée  
+**Date complétion** : 2025-11-03T19:17:36+00:00
+
+#### Étape 6.1 : API Users ✅
+
+**Statut** : ✅ Terminée
+
+##### 6.1.1 : Endpoints CRUD Users ✅
+- ✅ GET `/api/users` - Liste avec filtres et pagination
+- ✅ GET `/api/users/<id>` - Récupérer un utilisateur
+- ✅ POST `/api/users` - Créer un utilisateur
+- ✅ PUT `/api/users/<id>` - Mettre à jour un utilisateur
+- ✅ DELETE `/api/users/<id>` - Supprimer un utilisateur
+
+##### 6.1.2 : Filtres et Validation ✅
+- ✅ Filtres : username, email, role_id
+- ✅ Pagination (page, per_page, total, pages)
+- ✅ Protection JWT sur tous les endpoints
+- ✅ Validation unicité username/email
+- ✅ Modèle User mis à jour (to_dict inclut relations)
+
+**Critères de validation** :
+- ✅ Tous endpoints fonctionnent
+- ✅ Tests passent (4/4)
+- ✅ Couverture 100% sur users.py
+
+#### Étape 6.2 : API Roles ✅
+
+**Statut** : ✅ Terminée
+
+##### 6.2.1 : Endpoints CRUD Roles ✅
+- ✅ GET `/api/roles` - Liste avec filtres et pagination
+- ✅ GET `/api/roles/<id>` - Récupérer un rôle
+- ✅ POST `/api/roles` - Créer un rôle
+- ✅ PUT `/api/roles/<id>` - Mettre à jour un rôle
+- ✅ DELETE `/api/roles/<id>` - Supprimer un rôle
+
+##### 6.2.2 : Gestion Permissions ✅
+- ✅ Filtres : name
+- ✅ Pagination (page, per_page, total, pages)
+- ✅ Protection JWT sur tous les endpoints
+- ✅ Gestion permission_ids lors création/mise à jour
+- ✅ Modèle Role mis à jour (to_dict inclut permissions, users_count)
+
+**Critères de validation** :
+- ✅ Tous endpoints fonctionnent
+- ✅ Tests passent (4/4)
+- ✅ Couverture 100% sur roles.py
+
+#### Étape 6.3 : Composants Frontend ✅
+
+**Statut** : ✅ Terminée
+
+##### 6.3.1 : Page Users ✅
+- ✅ Composant Users avec filtres (username, email)
+- ✅ Composant UsersTable avec colonnes (ID, Username, Email, Rôles, Groupes, Statut, Actions)
+- ✅ Affichage badges pour rôles et groupes
+- ✅ Badge statut actif/inactif
+
+##### 6.3.2 : Page Roles ✅
+- ✅ Composant Roles avec filtres (name)
+- ✅ Composant RolesTable avec colonnes (ID, Nom, Description, Permissions, Utilisateurs, Actions)
+- ✅ Affichage badges pour permissions
+- ✅ Compteur utilisateurs par rôle
+
+##### 6.3.3 : Services API ✅
+- ✅ Service users.ts avec méthodes CRUD
+- ✅ Service roles.ts avec méthodes CRUD
+- ✅ Pagination intégrée
+
+**Critères de validation** :
+- ✅ Composants fonctionnent
+- ✅ Filtres appliqués correctement
+- ✅ Pagination fonctionnelle
+- ✅ Frontend compile sans erreurs
+
+#### Étape 6.4 : Tests Phase 6 ✅
+
+**Statut** : ✅ Terminée
+
+- ✅ Tests API Users : list_users, create_user, update_user, delete_user
+- ✅ Tests API Roles : list_roles, create_role, update_role, delete_role
+- ✅ Tous tests passent (8/8)
+- ✅ Couverture 100% sur blueprints users et roles
+
+**Critères de validation** :
+- ✅ Tests passent à 100%
+- ✅ Couverture ≥90% (100%)
+- ✅ Documentation à jour
 
 ---
 
-**Dernière mise à jour** : 2025-11-03T19:11:43+00:00  
+## 📈 Métriques
+
+- **Total tâches** : 245 (estimation)
+- **Tâches terminées** : 16
+- **Tâches en cours** : 0
+- **Tâches restantes** : 229
+- **Progression** : ~7%
+
+---
+
+**Dernière mise à jour** : 2025-11-03T19:17:36+00:00  
 **Prochaine mise à jour** : À chaque étape complétée
 

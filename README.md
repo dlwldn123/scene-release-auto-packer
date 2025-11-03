@@ -6,6 +6,7 @@
 ![Phase 3: Done](https://img.shields.io/badge/Phase%203-100%25%20DoD-brightgreen)
 ![Phase 4: Done](https://img.shields.io/badge/Phase%204-100%25%20DoD-brightgreen)
 ![Phase 5: Done](https://img.shields.io/badge/Phase%205-100%25%20DoD-brightgreen)
+![Phase 6: Done](https://img.shields.io/badge/Phase%206-100%25%20DoD-brightgreen)
 
 Automated scene release packer with rules compliance, NFO auto-generation, archive validation (RAR/ZIP/SFV), metadata fill.
 

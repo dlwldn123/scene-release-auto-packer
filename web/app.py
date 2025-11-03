@@ -48,7 +48,9 @@ def create_app(config_name: str | None = None) -> Flask:
     from web.blueprints.dashboard import dashboard_bp
     from web.blueprints.health import health_bp
     from web.blueprints.releases import releases_bp
+    from web.blueprints.roles import roles_bp
     from web.blueprints.rules import rules_bp
+    from web.blueprints.users import users_bp
     from web.blueprints.wizard import wizard_bp
 
     app.register_blueprint(health_bp, url_prefix="/api")
@@ -57,5 +59,7 @@ def create_app(config_name: str | None = None) -> Flask:
     app.register_blueprint(wizard_bp, url_prefix="/api")
     app.register_blueprint(releases_bp, url_prefix="/api")
     app.register_blueprint(rules_bp, url_prefix="/api")
+    app.register_blueprint(users_bp, url_prefix="/api")
+    app.register_blueprint(roles_bp, url_prefix="/api")
 
     return app

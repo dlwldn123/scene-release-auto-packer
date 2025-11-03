@@ -80,7 +80,11 @@ class User(db.Model):
             "username": self.username,
             "email": self.email,
             "active": self.active,
+            "note": self.note,
+            "roles": [role.to_dict() for role in self.roles.all()],
+            "groups": [group.to_dict() for group in self.groups.all()],
             "created_at": self.created_at.isoformat() if self.created_at else None,
+            "modify_at": self.modify_at.isoformat() if self.modify_at else None,
         }
 
     def __repr__(self) -> str:

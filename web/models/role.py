@@ -47,6 +47,8 @@ class Role(db.Model):
             "id": self.id,
             "name": self.name,
             "description": self.description,
+            "permissions": [perm.to_dict() for perm in self.permissions.all()],
+            "users_count": self.users.count(),
             "created_at": self.created_at.isoformat() if self.created_at else None,
         }
 
