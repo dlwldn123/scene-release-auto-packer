@@ -33,6 +33,7 @@ def create_app(config_name: str | None = None) -> Flask:
 
     # Import models to register them with SQLAlchemy
     from web.models import (  # noqa: F401
+        Configuration,
         Group,
         Job,
         Permission,
@@ -45,6 +46,7 @@ def create_app(config_name: str | None = None) -> Flask:
 
     # Register blueprints
     from web.blueprints.auth import auth_bp
+    from web.blueprints.config import config_bp
     from web.blueprints.dashboard import dashboard_bp
     from web.blueprints.health import health_bp
     from web.blueprints.releases import releases_bp
@@ -61,5 +63,6 @@ def create_app(config_name: str | None = None) -> Flask:
     app.register_blueprint(rules_bp, url_prefix="/api")
     app.register_blueprint(users_bp, url_prefix="/api")
     app.register_blueprint(roles_bp, url_prefix="/api")
+    app.register_blueprint(config_bp, url_prefix="/api")
 
     return app
