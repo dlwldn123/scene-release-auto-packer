@@ -9,7 +9,7 @@ from typing import Any
 from flask import Blueprint, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
 
-from web.extensions import db
+from web.extensions import db, limiter
 from web.models import Configuration, Group, Job, Release, Rule, User
 
 wizard_bp = Blueprint("wizard", __name__)
@@ -21,6 +21,7 @@ UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 @wizard_bp.route("/wizard/draft", methods=["POST"])
 @jwt_required()
+@limiter.limit("20 per minute")
 def create_draft() -> tuple[dict, int]:
     """Create draft release via wizard (steps 1-3).
 
