@@ -1,51 +1,77 @@
-# Deployment Guide
+# 🚀 Guide de Déploiement Rapide - eBook Scene Packer v2
 
-## 📋 Prérequis
+**Date** : 2025-11-03  
+**Version** : 2.0.0  
+**Statut** : ✅ Production-Ready
 
-- Docker et Docker Compose installés
-- MySQL 8.0+ (ou via Docker)
-- Variables d'environnement configurées
+---
 
-## 🚀 Déploiement avec Docker Compose
+## 📋 Vue d'Ensemble
 
-### 1. Configuration
+Ce document fournit un guide rapide pour déployer l'application eBook Scene Packer v2 en production.
+
+**Pour un guide détaillé** : Voir `docs/DEPLOYMENT_PLAN.md`
+
+---
+
+## 🐳 Déploiement avec Docker Compose
+
+### Prérequis
+
+- Docker 20.10+
+- Docker Compose 2.0+
+- 4GB RAM minimum
+- 20GB disque minimum
+
+### Configuration
+
+**1. Variables d'environnement** (`.env`)
 
 ```bash
-# Copier le fichier d'exemple
-cp .env.example .env
+# Database
+DB_ROOT_PASSWORD=changeme_secure_password
+DB_NAME=ebook_scene_packer
+DB_USER=appuser
+DB_PASSWORD=changeme_secure_password
+DB_PORT=3306
 
-# Éditer les variables d'environnement
-nano .env
+# Backend
+FLASK_ENV=production
+JWT_SECRET_KEY=changeme_very_secure_secret_key_min_32_chars
+JWT_ACCESS_TOKEN_EXPIRES=3600
+CORS_ORIGINS=https://yourdomain.com,https://www.yourdomain.com
+LOG_LEVEL=INFO
+
+# Ports
+BACKEND_PORT=5000
+FRONTEND_PORT=80
+NGINX_PORT=8080
 ```
 
-### 2. Démarrer les services
+**2. Démarrage**
 
 ```bash
-# Construire et démarrer tous les services
-docker-compose up -d
+# Build et démarrage
+docker-compose up -d --build
 
-# Vérifier les logs
+# Vérifier logs
 docker-compose logs -f
 
-# Vérifier le statut
+# Vérifier statut
 docker-compose ps
 ```
 
-### 3. Initialiser la base de données
+**3. Initialisation Base de Données**
 
 ```bash
-# Exécuter les migrations
+# Migrations
 docker-compose exec backend flask db upgrade
 
-# Optionnel : Créer un utilisateur admin
+# Créer utilisateur admin (si script existe)
 docker-compose exec backend flask create-admin
 ```
 
-### 4. Accéder à l'application
-
-- Frontend : http://localhost:8080
-- Backend API : http://localhost:5000/api
-- Health Check : http://localhost:8080/health
+---
 
 ## 🛠️ Commandes Utiles
 
@@ -70,7 +96,9 @@ docker-compose restart backend
 docker-compose exec backend flask db migrate -m "Description"
 ```
 
-## 📦 Déploiement Production
+---
+
+## 🔒 Sécurité Production
 
 ### Variables d'environnement critiques
 
@@ -79,7 +107,7 @@ docker-compose exec backend flask db migrate -m "Description"
 - `DB_PASSWORD` : Mot de passe base de données fort
 - `CORS_ORIGINS` : Origines CORS autorisées (séparées par virgules)
 
-### Sécurité
+### Bonnes Pratiques
 
 1. Ne jamais commiter `.env` dans git
 2. Utiliser des secrets forts pour production
@@ -87,6 +115,8 @@ docker-compose exec backend flask db migrate -m "Description"
 4. Configurer firewall (ports 80, 443 uniquement)
 5. Activer rate limiting
 6. Configurer backups automatiques de la base de données
+
+---
 
 ## 🔍 Monitoring
 
@@ -98,7 +128,23 @@ docker-compose ps
 docker stats
 
 # Logs applicatifs
-docker-compose logs -f --tail=100 backend
+docker-compose logs -f backend
+```
+
+---
+
+## 📚 Documentation Complète
+
+Pour un guide déploiement complet incluant :
+- Architecture de déploiement
+- Déploiement Kubernetes
+- SSL/TLS Configuration
+- Monitoring Production
+- Mises à jour et Rollback
+
+---
+
+**Dernière mise à jour** : 2025-11-03
 ```
 
 ## 📝 Notes
