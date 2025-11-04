@@ -1,4 +1,0 @@
-./web/static/favicon.svg
-./PROMPT_OPTIMISE.md
-./audit_results/magic_numbers.txt
-./audit_results/empty_files.txt
