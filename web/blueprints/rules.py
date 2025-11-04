@@ -18,6 +18,7 @@ rules_bp = Blueprint("rules", __name__)
 
 @rules_bp.route("/rules", methods=["GET"])
 @jwt_required()
+@cache.cached(timeout=600, query_string=True)  # Cache for 10 minutes
 def list_rules() -> tuple[dict, int]:
     """List rules with filters and pagination.
 

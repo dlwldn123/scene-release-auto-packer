@@ -6,7 +6,7 @@ from flask import Blueprint, jsonify
 from flask_jwt_extended import get_jwt_identity, jwt_required
 from sqlalchemy import func
 
-from web.extensions import db
+from web.extensions import cache, db
 from web.models import Job, Release, User
 
 dashboard_bp = Blueprint("dashboard", __name__)
@@ -14,6 +14,7 @@ dashboard_bp = Blueprint("dashboard", __name__)
 
 @dashboard_bp.route("/dashboard/stats", methods=["GET"])
 @jwt_required()
+@cache.cached(timeout=300)  # Cache for 5 minutes
 def get_stats() -> tuple[dict, int]:
     """Get dashboard statistics.
 

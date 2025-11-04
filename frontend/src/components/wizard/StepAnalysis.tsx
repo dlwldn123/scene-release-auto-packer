@@ -4,51 +4,27 @@ import { useEffect, useState } from 'react';
 
 interface StepAnalysisProps {
   filePath: string;
-  onNext: (data: { analysis: Record<string, unknown> }) => void;
+  analysis?: Record<string, unknown>;
+  onNext: () => void;
 }
 
 /**
  * Step 5: File analysis component.
  */
-export function StepAnalysis({ filePath, onNext }: StepAnalysisProps) {
-  const [analyzing, setAnalyzing] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [analysis, setAnalysis] = useState<Record<string, unknown> | null>(
-    null
-  );
-  const [_error, _setError] = useState<string | null>(null);
+export function StepAnalysis({ filePath, analysis, onNext }: StepAnalysisProps) {
+  const [analyzing] = useState(false);
+  const [progress] = useState(100);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (filePath) {
-      // Simulate analysis
-      setAnalyzing(true);
-      setProgress(0);
-
-      const interval = setInterval(() => {
-        setProgress(prev => {
-          if (prev >= 100) {
-            clearInterval(interval);
-            setAnalyzing(false);
-            setAnalysis({
-              title: 'Sample Book Title',
-              author: 'Sample Author',
-              isbn: '1234567890',
-              format: 'EPUB',
-              size: '2.5 MB',
-            });
-            return 100;
-          }
-          return prev + 10;
-        });
-      }, 300);
+      // Analysis will be triggered by parent component via onNext
+      // This component just displays the results
     }
   }, [filePath]);
 
-  const _handleNext = () => {
-    if (analysis) {
-      onNext({ analysis });
-    }
-  };
+  // Analysis is triggered automatically when filePath is available
+  // Parent component handles the API call
 
   return (
     <div className="wizard-step">
@@ -88,9 +64,13 @@ export function StepAnalysis({ filePath, onNext }: StepAnalysisProps) {
             </div>
           </div>
         </div>
-      ) : _error ? (
-        <div className="alert alert-danger">{_error}</div>
-      ) : null}
+      ) : error ? (
+        <div className="alert alert-danger">{error}</div>
+      ) : (
+        <div className="alert alert-info">
+          Analyse en cours... Veuillez patienter.
+        </div>
+      )}
     </div>
   );
 }

@@ -5,7 +5,7 @@ from __future__ import annotations
 from datetime import datetime
 
 from sqlalchemy import JSON, Text
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from web.extensions import db
 
@@ -31,6 +31,9 @@ class Job(db.Model):
     created_by: Mapped[int] = mapped_column(
         db.Integer, db.ForeignKey("users.id"), nullable=False
     )
+
+    # Relationships
+    release = relationship("Release", back_populates="jobs")
 
     def to_dict(self) -> dict:
         """Convert to dictionary."""

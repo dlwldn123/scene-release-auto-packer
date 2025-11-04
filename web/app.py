@@ -26,6 +26,7 @@ def create_app(config_name: str | None = None) -> Flask:
     # Initialize extensions
     db.init_app(app)
     migrate.init_app(app, db)
+    cache.init_app(app)
 
     # Initialize JWT
     jwt = JWTManager(app)

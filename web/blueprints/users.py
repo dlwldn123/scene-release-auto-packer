@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
+from sqlalchemy.orm import joinedload
 
 from web.extensions import db
 from web.models import Group, Role, User
@@ -44,8 +45,8 @@ def list_users() -> tuple[dict, int]:
     email = request.args.get("email", "")
     role_id = request.args.get("role_id", type=int)
 
-    # Build query
-    query = User.query
+    # Build query with eager loading to avoid N+1 queries
+    query = User.query.options(joinedload(User.roles))
 
     if username:
         query = query.filter(User.username.like(f"%{username}%"))

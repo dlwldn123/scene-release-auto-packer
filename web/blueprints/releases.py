@@ -5,7 +5,7 @@ from __future__ import annotations
 from flask import Blueprint, request
 from flask_jwt_extended import get_jwt_identity, jwt_required
 from sqlalchemy import String, cast
-from sqlalchemy.orm import Query
+from sqlalchemy.orm import Query, joinedload, selectinload
 
 from web.extensions import db
 from web.models import Release, User
@@ -73,8 +73,12 @@ def list_releases() -> tuple[dict, int]:
     sort_by = request.args.get("sort_by", "created_at")
     sort_order = request.args.get("sort_order", "desc")
 
-    # Build query
-    query = Release.query
+    # Build query with eager loading to avoid N+1 queries
+    query = Release.query.options(
+        joinedload(Release.user),
+        joinedload(Release.group),
+        selectinload(Release.jobs),
+    )
 
     # Filter by release type
     if release_type:
