@@ -44,6 +44,13 @@ class BaseConfig:
     CACHE_TYPE = "SimpleCache"
     CACHE_DEFAULT_TIMEOUT = 300
 
+    # CORS
+    CORS_ORIGINS = os.getenv("CORS_ORIGINS", "*").split(",")
+
+    # Rate Limiting
+    RATELIMIT_ENABLED = os.getenv("RATELIMIT_ENABLED", "true").lower() == "true"
+    RATELIMIT_STORAGE_URL = os.getenv("RATELIMIT_STORAGE_URL", "memory://")
+
     # API Keys Encryption
     API_KEYS_ENCRYPTION_KEY = os.getenv("API_KEYS_ENCRYPTION_KEY", "")
 

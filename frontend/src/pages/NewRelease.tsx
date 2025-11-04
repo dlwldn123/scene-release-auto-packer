@@ -252,13 +252,14 @@ export function NewRelease() {
           />
         );
       case 4:
-        return <StepFileSelection onNext={handleStep4Next} />;
+        return <StepFileSelection releaseId={wizardData.releaseId} onNext={handleStep4Next} />;
       case 5:
         return (
           <StepAnalysis
             filePath={wizardData.filePath || ''}
             analysis={wizardData.analysis}
             onNext={handleStep5Next}
+            loading={loading}
           />
         );
       case 6:

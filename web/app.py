@@ -6,8 +6,28 @@ from flask import Flask
 from flask_jwt_extended import JWTManager
 
 from web.config import get_config
-from web.extensions import db, migrate
+from web.extensions import db, migrate, cache, cors, limiter
 from web.security import init_jwt
+
+
+def add_security_headers(app: Flask) -> None:
+    """Add security headers to all responses.
+    
+    Args:
+        app: Flask application instance.
+    """
+    @app.after_request
+    def set_security_headers(response):
+        """Set security headers on response."""
+        response.headers['X-Content-Type-Options'] = 'nosniff'
+        response.headers['X-Frame-Options'] = 'DENY'
+        response.headers['X-XSS-Protection'] = '1; mode=block'
+        
+        # Only add HSTS in production
+        if not app.config.get('DEBUG', False):
+            response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
+        
+        return response
 
 
 def create_app(config_name: str | None = None) -> Flask:
@@ -27,6 +47,22 @@ def create_app(config_name: str | None = None) -> Flask:
     db.init_app(app)
     migrate.init_app(app, db)
     cache.init_app(app)
+    
+    # Initialize CORS
+    cors.init_app(app, resources={
+        r"/api/*": {
+            "origins": app.config.get("CORS_ORIGINS", "*"),
+            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+            "allow_headers": ["Content-Type", "Authorization"],
+        }
+    })
+    
+    # Initialize Rate Limiting
+    limiter.init_app(app)
+    limiter.enabled = app.config.get("RATELIMIT_ENABLED", True)
+
+    # Add security headers
+    add_security_headers(app)
 
     # Initialize JWT
     jwt = JWTManager(app)

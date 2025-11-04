@@ -13,13 +13,14 @@ from flask_jwt_extended import (
     jwt_required,
 )
 
-from web.extensions import db
+from web.extensions import db, limiter
 from web.models import TokenBlocklist, User
 
 auth_bp = Blueprint("auth", __name__)
 
 
 @auth_bp.route("/auth/login", methods=["POST"])
+@limiter.limit("5 per 15 minutes")
 def login() -> tuple[dict, int]:
     """Login endpoint.
 
@@ -60,6 +61,7 @@ def login() -> tuple[dict, int]:
 
 @auth_bp.route("/auth/refresh", methods=["POST"])
 @jwt_required(refresh=True)
+@limiter.limit("10 per minute")
 def refresh() -> tuple[dict, int]:
     """Refresh access token.
 
