@@ -56,8 +56,11 @@ export function ConfigurationsTable({
   }, [page, filters]);
 
   const handleDelete = async (configId: number) => {
+    const config = configurations.find(c => c.id === configId);
     if (
-      window.confirm('Êtes-vous sûr de vouloir supprimer cette configuration ?')
+      window.confirm(
+        `Êtes-vous sûr de vouloir supprimer la configuration "${config?.key}" ?`
+      )
     ) {
       try {
         await configurationsApi.delete(configId);
